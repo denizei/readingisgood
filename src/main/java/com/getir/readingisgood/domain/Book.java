@@ -1,24 +1,23 @@
 package com.getir.readingisgood.domain;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "BOOK")
-public class Book implements BaseEntity{
+public class Book implements BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     protected Long id;
 
-    @Column(name = "name",length = 60, nullable = false)
+    @Column(name = "name", length = 60, nullable = false)
     private String name;
-    @Column(name = "author",length = 50, nullable = false)
+    @Column(name = "author", length = 50, nullable = false)
     private String author;
     @Column(name = "price", nullable = false)
     private Double price;
     @Column(name = "publication_year", nullable = false)
     private Integer publicationYear;
-    @Column(name = "isbn", length = 13, nullable = false,unique = true)
+    @Column(name = "isbn", length = 13, nullable = false, unique = true)
     private String isbn;
     @Column(name = "stock_count", nullable = false)
     private Long stockCount;

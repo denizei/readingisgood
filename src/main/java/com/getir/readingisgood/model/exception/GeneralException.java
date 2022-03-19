@@ -1,13 +1,14 @@
 package com.getir.readingisgood.model.exception;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class GeneralException extends Exception {
     public enum ErrorCode {
         ORDER_NOT_FOUND(6), DUPLICATE_BOOK(5), FIELDS_ARE_NOT_SET_CORRECTLY(4), CUSTOMER_NOT_FOUND(1),
-        BOOK_NOT_FOUND(2), BOOK_NOT_ENOUGH_QUANTITY(3),USER_ALREADY_EXISTS(7),REQUEST_IS_NOT_AUTHORIZED(8)
-        ,USER_IS_NOT_AUTHORIZED(9);
+        BOOK_NOT_FOUND(2), BOOK_NOT_ENOUGH_QUANTITY(3), USER_ALREADY_EXISTS(7), REQUEST_IS_NOT_AUTHORIZED(8), USER_IS_NOT_AUTHORIZED(9);
         private int code;
 
         ErrorCode(int code) {
@@ -20,7 +21,7 @@ public class GeneralException extends Exception {
     }
 
     private ErrorCode errorCode;
-    private List<String> messages=new ArrayList<>();
+    private List<String> messages = new ArrayList<>();
 
     public GeneralException(ErrorCode errorCode, String message) {
         super(message);
@@ -29,7 +30,7 @@ public class GeneralException extends Exception {
     }
 
     public GeneralException(ErrorCode errorCode, List<String> messages) {
-        super(messages.isEmpty()?"":messages.toString());
+        super(messages.isEmpty() ? "" : messages.toString());
         this.messages.addAll(messages);
         this.errorCode = errorCode;
     }

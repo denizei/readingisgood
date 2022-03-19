@@ -10,13 +10,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MvcResult;
@@ -28,7 +26,6 @@ import java.util.Date;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @AutoConfigureJsonTesters
@@ -49,7 +46,7 @@ public class StatisticsControllerTest extends AbstractTest {
         logger.info("Setting up AuthenticationControllerTest");
         super.setUp();
 
-        Customer admin=new Customer();
+        Customer admin = new Customer();
         admin.setId(1l);
         admin.setName("Admin");
         admin.setSurname("sn");
@@ -59,10 +56,10 @@ public class StatisticsControllerTest extends AbstractTest {
         when(customerRepository.findByEmail("adminperson@example.com"))
                 .thenReturn(Optional.of(admin));
 
-        when( orderRepository.getStatsBetweenMonths(new Date(1577826000000L), new Date(1672520400000l)))
+        when(orderRepository.getStatsBetweenMonths(new Date(1577826000000L), new Date(1672520400000l)))
                 .thenReturn(new ArrayList<>(Arrays.asList(
-                        new Object[]{2022,2,4,252.24,12}
-                        ,new Object[]{2022,3,6,262.27,13})));
+                        new Object[]{2022, 2, 4, 252.24, 12}
+                        , new Object[]{2022, 3, 6, 262.27, 13})));
 
     }
 
@@ -72,8 +69,8 @@ public class StatisticsControllerTest extends AbstractTest {
         String uri = "/api/stats/monthly";
 
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
-                .accept(MediaType.APPLICATION_JSON_VALUE))
-                   .andReturn();
+                        .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andReturn();
         int status = mvcResult.getResponse().getStatus();
         JSONObject jsonObject = new JSONObject(mvcResult.getResponse().getContentAsString());
         logger.info(jsonObject.toString());
@@ -135,7 +132,7 @@ public class StatisticsControllerTest extends AbstractTest {
 
         assertEquals(jsonObject.getInt("status"), 200);
         assertEquals(true, jsonObject.isNull("error"));
-        assertEquals(2,jsonObject.getJSONArray("data").length());
+        assertEquals(2, jsonObject.getJSONArray("data").length());
     }
 }
 

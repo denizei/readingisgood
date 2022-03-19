@@ -2,8 +2,6 @@ package com.getir.readingisgood.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "CHANGE_LOG")
@@ -12,17 +10,17 @@ public class ChangeLog {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="customer_id",nullable = false)
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
-    @Column(name="entity_id",nullable = false)
+    @Column(name = "entity_id", nullable = false)
     private Long entityId;
-    @Column(name="action_date",nullable = false)
+    @Column(name = "action_date", nullable = false)
     private LocalDateTime actionDate;
-    @Column(name="status",nullable = false)
+    @Column(name = "status", nullable = false)
     private ChangeLogActionType actionType;
-    @Column(name="old_value")
+    @Column(name = "old_value")
     private String oldValue;
-    @Column(name="new_value",nullable = false)
+    @Column(name = "new_value", nullable = false)
     private String newValue;
 
     public ChangeLog() {
@@ -34,7 +32,7 @@ public class ChangeLog {
         this.actionType = actionType;
         this.oldValue = oldValue;
         this.newValue = newValue;
-        this.actionDate=LocalDateTime.now();
+        this.actionDate = LocalDateTime.now();
     }
 
     public Long getId() {

@@ -8,7 +8,6 @@ import com.getir.readingisgood.model.request.BookUpdateRequest;
 import com.getir.readingisgood.repository.BookRepository;
 import com.getir.readingisgood.repository.CustomerRepository;
 import org.junit.jupiter.api.*;
-import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +19,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -48,7 +43,7 @@ public class BookControllerTest extends AbstractTest {
     @MockBean
     CustomerRepository customerRepository;
 
-    Long bookId=null;
+    Long bookId = null;
     Book book;
 
 
@@ -56,14 +51,14 @@ public class BookControllerTest extends AbstractTest {
     public void setUp() {
         logger.info("BookControllerTest setting  up");
         super.setUp();
-        Customer admin=new Customer();
+        Customer admin = new Customer();
         admin.setId(1l);
         admin.setName("Admin");
         admin.setSurname("sn");
         admin.setEmail("adminperson@example.com");
         when(customerRepository.findByEmail("adminperson@example.com"))
                 .thenReturn(Optional.of(admin));
-        Customer user=new Customer();
+        Customer user = new Customer();
         user.setId(2l);
         user.setName("User");
         user.setSurname("sn");
@@ -86,9 +81,9 @@ public class BookControllerTest extends AbstractTest {
         bookRequest.setIsbn("1234567123456");
 
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
-                .contentType("application/json")
-                 .content(objectMapper.writeValueAsString(bookRequest))
-                 .accept(MediaType.APPLICATION_JSON_VALUE))
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(bookRequest))
+                        .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andReturn();
         JSONObject jsonObject = new JSONObject(mvcResult.getResponse().getContentAsString());
         logger.info(jsonObject.toString());
@@ -97,7 +92,7 @@ public class BookControllerTest extends AbstractTest {
         assertEquals(jsonObject.getJSONObject("data").getString("isbn"), "1234567123456");
         assertEquals(jsonObject.getJSONObject("data").getString("name"), "Dune");
         assertEquals(jsonObject.getJSONObject("data").getLong("stockCount"), 12L);
-        bookId=jsonObject.getJSONObject("data").getLong("id");
+        bookId = jsonObject.getJSONObject("data").getLong("id");
 
 
         bookRequest = new BookRequest();
@@ -154,7 +149,7 @@ public class BookControllerTest extends AbstractTest {
 
         getSavedBook();
 
-        String uri = "/api/book/"+book.getId();
+        String uri = "/api/book/" + book.getId();
 
         BookUpdateRequest bookRequest = new BookUpdateRequest();
 
@@ -165,7 +160,7 @@ public class BookControllerTest extends AbstractTest {
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put(uri)
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(bookRequest))
-                .accept(MediaType.APPLICATION_JSON_VALUE))
+                        .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andReturn();
         logger.info(mvcResult.getResponse().getContentAsString());
 
@@ -185,7 +180,7 @@ public class BookControllerTest extends AbstractTest {
 
         getSavedBook();
 
-        String uri = "/api/book/"+bookId;
+        String uri = "/api/book/" + bookId;
 
         BookUpdateRequest bookRequest = new BookUpdateRequest();
 
@@ -204,7 +199,7 @@ public class BookControllerTest extends AbstractTest {
         assertEquals(jsonObject.getInt("status"), 400);
         assertEquals(true, jsonObject.isNull("data"));
         assertEquals(jsonObject.getJSONObject("error").getLong("code")
-               , GeneralException.ErrorCode.FIELDS_ARE_NOT_SET_CORRECTLY.getCode());
+                , GeneralException.ErrorCode.FIELDS_ARE_NOT_SET_CORRECTLY.getCode());
     }
 
     @Test
@@ -243,7 +238,7 @@ public class BookControllerTest extends AbstractTest {
 
         getSavedBook();
 
-        String uri = "/api/book/"+book.getId();
+        String uri = "/api/book/" + book.getId();
 
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
@@ -314,7 +309,7 @@ public class BookControllerTest extends AbstractTest {
 
     private void getSavedBook() {
         System.out.println("book = " + bookId);
-        if(bookId==null) {
+        if (bookId == null) {
             book = new Book();
             book.setAuthor("Frank Herbert");
             book.setName("Dune");
@@ -324,12 +319,12 @@ public class BookControllerTest extends AbstractTest {
             book.setIsbn("1234567123456");
             try {
                 book = bookRepository.save(book);
-                bookId=book.getId();
-            }catch (Exception ex){
+                bookId = book.getId();
+            } catch (Exception ex) {
 
             }
         } else
-            book=bookRepository.findById(bookId).get();
+            book = bookRepository.findById(bookId).get();
     }
 
 }

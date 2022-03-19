@@ -13,15 +13,15 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query(value = "Select o from Order o where o.orderDate BETWEEN :startDate AND :endDate ORDER  BY o.orderDate desc")
-    public List<Order> getAllBetweenDates(@Param("startDate") LocalDateTime startDate, @Param("endDate")LocalDateTime endDate);
+    public List<Order> getAllBetweenDates(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
     @Query(value = "Select EXTRACT(YEAR FROM o.order_date) as  yr,EXTRACT(MONTH FROM o.order_date) as mt" +
             ",count(distinct o.id),sum(ob.price)" +
             ",sum(ob.quantity) from CUSTOMER_ORDER o,order_book ob " +
             " where ob.order_id=o.id AND o.order_date BETWEEN :startDate AND :endDate " +
             " group by yr,mt order by yr desc,mt desc"
-            ,nativeQuery = true)
-    public List<Object[]> getStatsBetweenMonths(@Param("startDate") Date startDate, @Param("endDate")Date endDate);
+            , nativeQuery = true)
+    public List<Object[]> getStatsBetweenMonths(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
     public List<Order> findByCustomer(Customer customer, Pageable pageable);
 }

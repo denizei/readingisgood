@@ -12,9 +12,10 @@ public class OrderBookRequest {
     @Min(value = 1, message = "Book ")
     private Integer quantity;
 
-    public OrderBookRequest(){
+    public OrderBookRequest() {
 
     }
+
     public OrderBookRequest(Long bookId, Integer quantity) {
         this.bookId = bookId;
         this.quantity = quantity;

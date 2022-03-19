@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable().antMatcher("/db/**").headers().frameOptions().disable().and()
                 .antMatcher("/**")
                 .authorizeRequests().antMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/**"
-                        , "/db/**", "/api/book/**", "/api/customer", "/authenticate")
+                        , "/db/**","/", "/api/book/**", "/api/customer", "/authenticate")
                 .permitAll()
                 .anyRequest().authenticated().and().
                 exceptionHandling()

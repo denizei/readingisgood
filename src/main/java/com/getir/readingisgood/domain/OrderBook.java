@@ -10,14 +10,14 @@ public class OrderBook {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="order_id")
+    @JoinColumn(name = "order_id")
     private Order order;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="book_id")
+    @JoinColumn(name = "book_id")
     private Book book;
-    @JoinColumn(name="quantity")
+    @JoinColumn(name = "quantity")
     private Integer quantity;
-    @JoinColumn(name="price")
+    @JoinColumn(name = "price")
     private Double price;
 
     public OrderBook() {

@@ -11,9 +11,9 @@ public class StatisticsResponse {
     }
 
     public StatisticsResponse(Object[] object) {
-        this.year =((Number) object[0]).intValue();
-        this.month =((Number) object[1]).intValue();
-        this.totalOrderCount =((Number) object[2]).intValue();
+        this.year = ((Number) object[0]).intValue();
+        this.month = ((Number) object[1]).intValue();
+        this.totalOrderCount = ((Number) object[2]).intValue();
         this.totalPurchasedAmount = ((Number) object[3]).doubleValue();
         this.totalBookCount = ((Number) object[4]).intValue();
 

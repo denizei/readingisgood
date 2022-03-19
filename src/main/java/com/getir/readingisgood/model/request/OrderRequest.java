@@ -1,7 +1,5 @@
 package com.getir.readingisgood.model.request;
 
-import com.getir.readingisgood.model.exception.GeneralException;
-
 import javax.validation.constraints.NotNull;
 import java.util.List;
 

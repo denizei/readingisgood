@@ -1,10 +1,21 @@
 package com.getir.readingisgood.model.exception;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.List;
 
 public class ExceptionObject {
 
     private List<String> messages;
+    @Schema(description = "1: CUSTOMER NOT FOUND <br/>" +
+            " 2: BOOK NOT FOUND <br/>" +
+            " 3: BOOK NOT ENOUGH QUANTITY <br/>" +
+            " 4: FIELDS_ARE_NOT_SET_CORRECTLY <br/>" +
+            " 5: DUPLICATE_BOOK <br/>" +
+            " 6: ORDER_NOT_FOUND <br/>" +
+            " 7: USER_ALREADY_EXISTS <br/>" +
+            " 8: REQUEST_IS_NOT_AUTHORIZED <br/>" +
+            " 9: USER_IS_NOT_AUTHORIZED")
     private Integer code;
 
     public ExceptionObject(GeneralException exp) {

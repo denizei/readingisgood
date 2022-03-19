@@ -17,19 +17,19 @@ public class ControllerHelper {
         return map;
     }
 
-    public static String getHashedPassword(String password){
-        password+="reigo";
+    public static String getHashedPassword(String password) {
+        password += "reigo";
         MessageDigest m = null;
         try {
             m = MessageDigest.getInstance("MD5");
             m.reset();
             m.update(password.getBytes());
             byte[] digest = m.digest();
-            BigInteger bigInt = new BigInteger(1,digest);
+            BigInteger bigInt = new BigInteger(1, digest);
             String hashtext = bigInt.toString(16);
 // Now we need to zero pad it if you actually want the full 32 chars.
-            while(hashtext.length() < 32 ){
-                hashtext = "0"+hashtext;
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
             }
             return hashtext;
         } catch (NoSuchAlgorithmException e) {

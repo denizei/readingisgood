@@ -113,7 +113,7 @@ public class OrderControllerTest extends AbstractTest {
 
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
                         .contentType("application/json")
-                        .content(objectMapper.writeValueAsString(orderRequest)  )
+                        .content(objectMapper.writeValueAsString(orderRequest))
                         .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andReturn();
         JSONObject jsonObject = new JSONObject(mvcResult.getResponse().getContentAsString());

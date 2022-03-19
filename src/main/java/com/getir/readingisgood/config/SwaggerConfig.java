@@ -1,10 +1,8 @@
 package com.getir.readingisgood.config;
 
 import io.swagger.v3.oas.models.Components;
-import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springdoc.core.GroupedOpenApi;
@@ -33,7 +31,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .info(new Info().title("Documentation: Reading is Good API")
                         .description("Reading is Good Bookstore App")
 
-                        )
+                )
                 .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
                 .components(
                         new Components()

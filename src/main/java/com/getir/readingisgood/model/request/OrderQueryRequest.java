@@ -10,6 +10,7 @@ public class OrderQueryRequest {
 
     @NotNull
     private LocalDateTime startDate;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public LocalDateTime getStartDate() {
         return startDate;
@@ -17,6 +18,7 @@ public class OrderQueryRequest {
 
     @NotNull
     private LocalDateTime endDate;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public LocalDateTime getEndDate() {
         return endDate;

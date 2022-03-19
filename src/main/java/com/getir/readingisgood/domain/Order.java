@@ -12,11 +12,11 @@ public class Order implements BaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     protected Long id;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="customer_id")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
-    @Column(name="order_date")
+    @Column(name = "order_date")
     private LocalDateTime orderDate;
-    @Column(name="status")
+    @Column(name = "status")
     private OrderStatus status;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
     private List<OrderBook> books = new ArrayList<>();
@@ -29,6 +29,7 @@ public class Order implements BaseEntity {
         this.orderDate = orderDate;
         this.status = status;
     }
+
     @Override
     public Long getId() {
         return id;
@@ -38,6 +39,7 @@ public class Order implements BaseEntity {
     public void setId(Long id) {
         this.id = id;
     }
+
     public Customer getCustomer() {
         return customer;
     }

@@ -47,9 +47,8 @@ public class ChangeLogSaver {
             else if (o instanceof Customer)
                 type = ChangeLogActionType.CUSTOMER_CREATED;
             else if (o.getId() == -1)
-                type = ChangeLogActionType.MONTLY_REPORT_FETCHED;
-            else
-                type = ChangeLogActionType.COMMON_LOG;
+                type = ChangeLogActionType.MONTHLY_REPORT_FETCHED;
+
             if (customer == null)
                 customer = getValidCustomer().get();
             if (customer == null)

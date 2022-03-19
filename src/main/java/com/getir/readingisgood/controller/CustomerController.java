@@ -49,7 +49,7 @@ public class CustomerController {
         if (customer.isPresent())
             return new ResponseEntity<>(new ObjectResponse<>(208,
                     new GeneralException(GeneralException.ErrorCode.USER_ALREADY_EXISTS
-                            , customerRequest.getEmail() + " is already used.")),HttpStatus.ALREADY_REPORTED);
+                            , customerRequest.getEmail() + " is already used.")), HttpStatus.ALREADY_REPORTED);
         Customer newCustomer = customerRepository
                 .save(new Customer(customerRequest.getName(), customerRequest.getSurname(), customerRequest.getEmail(), LocalDateTime.now(),
                         CustomerStatus.ACTIVE, customerRequest.getAddress()

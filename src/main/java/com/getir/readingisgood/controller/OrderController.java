@@ -87,9 +87,13 @@ public class OrderController {
             int totalBooks = 0;
             double totalPrice = 0;
             for (OrderBookRequest obr : orderRequest.getBooks()) {
-                if (obr.getQuantity()<1) {
+                if (obr.getQuantity() == null || obr.getQuantity() < 1) {
                     throw new GeneralException(GeneralException.ErrorCode.FIELDS_ARE_NOT_SET_CORRECTLY
                             , "Quantity should be more than 0 : " + obr.getBookId());
+                }
+                if (obr.getBookId() == null || obr.getBookId() < 1) {
+                    throw new GeneralException(GeneralException.ErrorCode.FIELDS_ARE_NOT_SET_CORRECTLY
+                            , "Book Id should be more than 0 : " + obr.getBookId());
                 }
                 Optional<Book> book = bookRepository.findById(obr.getBookId());
                 if (book.isEmpty()) {
