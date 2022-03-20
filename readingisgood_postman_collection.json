@@ -8,6 +8,9 @@
 		{
 			"name": "Wrong Authentication",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -20,12 +23,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/authenticate",
-					"protocol": "http",
+					"raw": "{{path}}/authenticate",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"authenticate"
 					]
@@ -36,6 +37,9 @@
 		{
 			"name": "Authenticate as User",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -48,12 +52,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/authenticate",
-					"protocol": "http",
+					"raw": "{{path}}/authenticate",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"authenticate"
 					]
@@ -64,6 +66,9 @@
 		{
 			"name": "Authenticate as Admin",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -76,12 +81,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/authenticate",
-					"protocol": "http",
+					"raw": "{{path}}/authenticate",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"authenticate"
 					]
@@ -97,7 +100,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pekBleGFtcGxlLmNvbSIsImV4cCI6MTY0Nzc3NTc5OSwiaWF0IjoxNjQ3NzY0OTk5fQ.Sj8JvTh1nVXH4yIvIeFyMCLAFPMk_WYwFV4wWaDpndEneuN6TQSUU7U6xZo6EWAhgQY7aifMCMffUdF9aOLOVw",
+							"value": "{{adminToken}}",
 							"type": "string"
 						}
 					]
@@ -114,12 +117,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/book",
-					"protocol": "http",
+					"raw": "{{path}}/api/book",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
 						"book"
@@ -137,12 +138,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/api/book",
-					"protocol": "http",
+					"raw": "{{path}}/api/book",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
 						"book"
@@ -158,14 +157,7 @@
 			},
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NjE4ODQ2LCJpYXQiOjE2NDc1MTg4NDZ9.ovmzDlUySLhAvJVSO6ANo73vGhvFw5q8BghPjugYou0pFch1FqdDTUBbheuFp9CAoLGGpckym4qIGBfg6sb1Lw",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
@@ -179,12 +171,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/book/2",
-					"protocol": "http",
+					"raw": "{{path}}/api/book/2",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
 						"book",
@@ -203,12 +193,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/api/book/4555",
-					"protocol": "http",
+					"raw": "{{path}}/api/book/4555",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
 						"book",
@@ -227,12 +215,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/api/book/adasdff",
-					"protocol": "http",
+					"raw": "{{path}}/api/book/adasdff",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
 						"book",
@@ -251,12 +237,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/api/book?name=a",
-					"protocol": "http",
+					"raw": "{{path}}/api/book?name=a",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
 						"book"
@@ -274,6 +258,9 @@
 		{
 			"name": "Create a new Customer with USER role",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -286,12 +273,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/customer",
-					"protocol": "http",
+					"raw": "{{path}}/api/customer",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
 						"customer"
@@ -304,7 +289,7 @@
 			"name": "Create a Customer - duplicate error",
 			"request": {
 				"auth": {
-					"type": "bearer"
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [],
@@ -318,12 +303,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/customer",
-					"protocol": "http",
+					"raw": "{{path}}/api/customer",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
 						"customer"
@@ -340,7 +323,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NjI5MTQwLCJpYXQiOjE2NDc1MjkxNDB9.CLbNMI3zwN7jtGF7DZzEeIrJDMjmDmyItKtrS-Lt43H5g6MPXFgDHUh7P1WO9KNA7v-KsJUcjxmyZEKTT1DGWQ",
+							"value": "{{adminToken}}",
 							"type": "string"
 						}
 					]
@@ -357,12 +340,47 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/order",
-					"protocol": "http",
+					"raw": "{{path}}/api/order",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
+					"path": [
+						"api",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Order from User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{userToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"books\": [\r\n            {\r\n                \"bookId\":33,\r\n                \"quantity\": 3\r\n            },\r\n            {\r\n                \"bookId\":2,\r\n                \"quantity\": 1\r\n            }\r\n        ]\r\n        \r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{path}}/api/order",
+					"host": [
+						"{{path}}"
+					],
 					"path": [
 						"api",
 						"order"
@@ -382,7 +400,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NzMxNzk5LCJpYXQiOjE2NDc2MzE3OTl9.QvqwNkDSHfBybCnXWJqbVN7W7qConCVLkjxJv2Kl3dzHyIzuPIUwaG0_3wvPZMvxMe2AAPQc9T9vC-wlsE6vgQ",
+							"value": "{{adminToken}}",
 							"type": "string"
 						}
 					]
@@ -399,12 +417,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/order/34",
-					"protocol": "http",
+					"raw": "{{path}}/api/order/34",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
 						"order",
@@ -422,7 +438,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NjI5MTQwLCJpYXQiOjE2NDc1MjkxNDB9.CLbNMI3zwN7jtGF7DZzEeIrJDMjmDmyItKtrS-Lt43H5g6MPXFgDHUh7P1WO9KNA7v-KsJUcjxmyZEKTT1DGWQ",
+							"value": "{{adminToken}}",
 							"type": "string"
 						}
 					]
@@ -439,12 +455,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/order/changestatus/161",
-					"protocol": "http",
+					"raw": "{{path}}/api/order/changestatus/161",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
 						"order",
@@ -458,15 +472,23 @@
 		{
 			"name": "Query orders with start and end dates",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/api/order?startDate=2020-01-01&endDate=2023-01-01",
-					"protocol": "http",
+					"raw": "{{path}}/api/order?startDate=2020-01-01&endDate=2023-01-01",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
 						"order"
@@ -486,14 +508,14 @@
 			"response": []
 		},
 		{
-			"name": "View Customer's Orders",
+			"name": "Query orders with start and end dates with pagination",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NzQwMTczLCJpYXQiOjE2NDc2NDAxNzN9.QIYB7TC7uhyjmvNxrbZFcGSHNXlFmhflzrCAgj2worw8OWkG4wk9JOUiKNJyFtGi75t7iTPV84anc-k1Ig4WvA",
+							"value": "{{adminToken}}",
 							"type": "string"
 						}
 					]
@@ -501,15 +523,58 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/api/customer/orders?page=-1&limit=-5",
-					"protocol": "http",
+					"raw": "{{path}}/api/order?startDate=2020-01-01&endDate=2023-01-01&limit=2&page=2",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
-						"customer",
+						"order"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2020-01-01"
+						},
+						{
+							"key": "endDate",
+							"value": "2023-01-01"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Customer's Orders With wrong pagination",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{path}}/api/orders?page=-1&limit=-5",
+					"host": [
+						"{{path}}"
+					],
+					"path": [
+						"api",
 						"orders"
 					],
 					"query": [
@@ -534,7 +599,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NjE4ODQ2LCJpYXQiOjE2NDc1MTg4NDZ9.ovmzDlUySLhAvJVSO6ANo73vGhvFw5q8BghPjugYou0pFch1FqdDTUBbheuFp9CAoLGGpckym4qIGBfg6sb1Lw",
+							"value": "{{adminToken}}",
 							"type": "string"
 						}
 					]
@@ -551,12 +616,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/book/68",
-					"protocol": "http",
+					"raw": "{{path}}/api/book/68",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
 						"book",
@@ -574,7 +637,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NjE4ODQ2LCJpYXQiOjE2NDc1MTg4NDZ9.ovmzDlUySLhAvJVSO6ANo73vGhvFw5q8BghPjugYou0pFch1FqdDTUBbheuFp9CAoLGGpckym4qIGBfg6sb1Lw",
+							"value": "{{adminToken}}",
 							"type": "string"
 						}
 					]
@@ -591,12 +654,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/book/68",
-					"protocol": "http",
+					"raw": "{{path}}/api/book/68",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
 						"book",
@@ -607,39 +668,7 @@
 			"response": []
 		},
 		{
-			"name": "Query of customer without token",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8082/api/orders",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8082",
-					"path": [
-						"api",
-						"orders"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Query of customer",
+			"name": "Query of Orders without token",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -659,12 +688,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/orders",
-					"protocol": "http",
+					"raw": "{{path}}/api/orders",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
 						"orders"
@@ -674,7 +701,7 @@
 			"response": []
 		},
 		{
-			"name": "Query of books by User",
+			"name": "Query of Orders By Admin",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -684,7 +711,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pekBleGFtcGxlLmNvbSIsImV4cCI6MTY0Nzc3NjU2MSwiaWF0IjoxNjQ3NzY1NzYxfQ.l4a_nI09r_cKzyMCgV7tQcUmVM9H-Yu0DdH5VG1KN6cmY-yAU0Lqu7V7s_kotoTMLl2Pcrymeqi5RAxU2YEgRQ",
+							"value": "{{adminToken}}",
 							"type": "string"
 						}
 					]
@@ -701,12 +728,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/orders",
-					"protocol": "http",
+					"raw": "{{path}}/api/orders",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
 						"orders"
@@ -716,23 +741,26 @@
 			"response": []
 		},
 		{
-			"name": "New Order from User",
+			"name": "Query of Orders Pagination",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pekBleGFtcGxlLmNvbSIsImV4cCI6MTY0NzcyOTU1MCwiaWF0IjoxNjQ3NzE4NzUwfQ.q5FOMPo2oO0KLu49XbdYLiEiGD2OeFE18DVSnhUwv_HwIIYqbQo7PO7HCRtvQv5XvqRvSU60zyp39dI4427jtA",
+							"value": "{{adminToken}}",
 							"type": "string"
 						}
 					]
 				},
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"books\": [\r\n            {\r\n                \"bookId\":33,\r\n                \"quantity\": 3\r\n            },\r\n            {\r\n                \"bookId\":2,\r\n                \"quantity\": 1\r\n            }\r\n        ]\r\n        \r\n    \r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -740,15 +768,63 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/order",
-					"protocol": "http",
+					"raw": "{{path}}/api/orders?page=1&limit=3",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
-						"order"
+						"orders"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query of Orders by User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{userToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{path}}/api/orders",
+					"host": [
+						"{{path}}"
+					],
+					"path": [
+						"api",
+						"orders"
 					]
 				}
 			},
@@ -762,7 +838,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pekBleGFtcGxlLmNvbSIsImV4cCI6MTY0Nzc3NjU2MSwiaWF0IjoxNjQ3NzY1NzYxfQ.l4a_nI09r_cKzyMCgV7tQcUmVM9H-Yu0DdH5VG1KN6cmY-yAU0Lqu7V7s_kotoTMLl2Pcrymeqi5RAxU2YEgRQ",
+							"value": "{{adminToken}}",
 							"type": "string"
 						}
 					]
@@ -770,12 +846,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/api/stats/monthly?startDate=2020-01&endDate=2023-01",
-					"protocol": "http",
+					"raw": "{{path}}/api/stats/monthly?startDate=2020-01&endDate=2023-01",
 					"host": [
-						"localhost"
+						"{{path}}"
 					],
-					"port": "8082",
 					"path": [
 						"api",
 						"stats",
@@ -794,6 +868,94 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"try{",
+					"    if(typeof pm.request.auth.bearer !=\"undefined\"){",
+					"        var reqTime=new Date().getTime();",
+					"        if(reqTime-(pm.collectionVariables.get('adminTime')||0)>86400000){",
+					"            pm.sendRequest({",
+					"            url: pm.collectionVariables.get('path')+'/authenticate',",
+					"            method: 'POST',",
+					"            header: {",
+					"                'Content-Type': 'application/json'},",
+					"            body: {",
+					"                mode: 'raw',",
+					"                raw: JSON.stringify({",
+					"                \"email\":\"deniz@example.com\",",
+					"                \"password\":\"asdf1234\"",
+					"            })",
+					"            }",
+					"            }, function (err, response) {",
+					"                var jsonData = response.json();",
+					"                pm.collectionVariables.set(\"adminToken\", response.json().token);",
+					"                pm.collectionVariables.set(\"adminTime\", reqTime);",
+					"            });",
+					"        }",
+					"",
+					"        if(reqTime-(pm.collectionVariables.get('userTime')||0)>86400000){",
+					"            pm.sendRequest({",
+					"            url: pm.collectionVariables.get('path')+'/authenticate',",
+					"            method: 'POST',",
+					"            header: {",
+					"                'Content-Type': 'application/json'},",
+					"            body: {",
+					"                mode: 'raw',",
+					"                raw: JSON.stringify({",
+					"            \"email\":\"ashketchumexample@example.com\",",
+					"            \"password\":\"abcd1234\"",
+					"        })",
+					"            }",
+					"            }, function (err, response) {",
+					"                var jsonData = response.json();",
+					"                pm.collectionVariables.set(\"userToken\", response.json().token);",
+					"                pm.collectionVariables.set(\"userTime\", reqTime-1000);",
+					"            });",
+					"        }",
+					"    }",
+					"}catch(exp){",
+					"",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "path",
+			"value": "http://localhost:8082",
+			"type": "string"
+		},
+		{
+			"key": "userToken",
+			"value": ""
+		},
+		{
+			"key": "userTime",
+			"value": ""
+		},
+		{
+			"key": "adminToken",
+			"value": ""
+		},
+		{
+			"key": "adminTime",
+			"value": ""
 		}
 	]
 }

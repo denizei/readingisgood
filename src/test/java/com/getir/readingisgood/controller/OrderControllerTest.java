@@ -364,6 +364,25 @@ public class OrderControllerTest extends AbstractTest {
         assertEquals(1, jsonObject.getJSONArray("data").length());
     }
 
+    @Test
+    @WithMockUser(username = "adminperson@example.com", password = "123456", roles = "ADMIN")
+    @Order(5)
+    public void getOrdersWithPaginationTest() throws Exception {
+
+        getSavedOrder();
+
+        String uri = "/api/order?startDate=2020-01-01&endDate=2023-01-01&limit=3&page=5";
+
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
+                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+
+        JSONObject jsonObject = new JSONObject(mvcResult.getResponse().getContentAsString());
+        logger.info(jsonObject.toString());
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(HttpStatus.OK.value(), status);
+        assertEquals(0, jsonObject.getJSONArray("data").length());
+    }
+
     private void getSavedOrder() {
         System.out.println("order = " + orderId);
         if (orderId == null) {

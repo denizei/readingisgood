@@ -43,11 +43,11 @@ by using the link below
 [DB] (http://localhost:8082/db/)
 * Driver Class: `org.h2.Driver`
 * JDBC URL: `jdbc:h2:file:./bookstoredb`
-* username: `un`
-* password: (no password needed)
+* User Name: `un`
+* Password: (no password needed)
 
 Some sample data are already inserted in database.
-`bookstoredb.mv.db` is the file which includes the database.
+`bookstoredb.mv.db` is the file which includes the database. This file is located at main project directory.
 
 #### Tables 
 * `CUSTOMER` => id, email, name, surname, registration_date, password, status, role, address
@@ -59,15 +59,19 @@ Some sample data are already inserted in database.
 ## Usage
 Postman collection can be found in this directory:
 [POSTMAN]
+Once an authorization required request is sent 
+the collection automatically generates {{adminToken}} and {{userToken}} 
+variables with help of Postman Pre-request Script. 
+If a problem occurs, you can describe them under Collection Variables tab.
 
 [POSTMAN]: https://github.com/denizei/readingisgood/blob/main/readingisgood_postman_collection.json
 
 These operations can be performed without any authorization
-* Create a customer
-* Authenticate
-* View details of all the books in the database
-* Search for books with keyword
-* View book details by book id
+* Create a customer (POST `https://localhost:8082/api/customer`)
+* Authenticate (POST `https://localhost:8082/authenticate`)
+* View details of all the books in the database (GET `https://localhost:8082/api/book`)
+* Search for books with keyword (GET `https://localhost:8082/api/book?name={name pattern}`)
+* View book details by book id (GET `https://localhost:8082/api/book/{id}`)
 
 This system uses JWT based authentication.
 
@@ -81,7 +85,7 @@ To perform further operations please authenticate using;
 * Creating a new customer and using its email and password info.
 * If customer role is set to **1** then the customer becomes an admin.
 
-Since a token is created, it is available for **3 hours**. 
+Since a token is created, it is available for **1 day**. 
 
 After that please use the generated Bearer token with the request below in Postman.
 `https://localhost:8082/authenticate` (Authenticate as User/ Authenticate as Admin)
@@ -94,13 +98,25 @@ After being authorized as admin one can perform these operations
 * Update a book's price or stock count (PUT `https://localhost:8082/api/book/{id}`)
 * Update an order's status (PUT `https://localhost:8082/api/order/changestatus/{id}`)
 * Display monthly statistics (GET `https://localhost:8082/api/stats/monthly?startDate={yyyy-MM}&endDate={yyyy-MM}`)
-* View their orders  (POST `https://localhost:8082/api/orders`)
+* View their orders (POST `https://localhost:8082/api/orders?limit={limit}&page={page starting from 0}`)
 
 
 After authorized as user one can perform these operations
 * Place an order of books (POST `https://localhost:8082/api/order`)
-* View their orders  (POST `https://localhost:8082/api/orders`)
+* View their orders  (POST `https://localhost:8082/api/orders?limit={limit}&page={page starting from 0}`)
 * View an order of their own (GET `https://localhost:8082/api/order/{id}`)
+
+## Constraints
+
+* Book quantity in an order must be bigger than 0.
+* Book price cannot be lower than 0.
+* Book stock count cannot be lower than 0.
+* Query limit parameter must be bigger than 0.
+* Query page parameter cannot lower than 0.
+* ISBN number should be unique for each book.
+* e-mail address should be unique for each customer.
+* Order query startDate and endDate parameter format is yyyy-MM-dd.
+* Monthly statistics startDate and endDate parameter format is yyyy-MM.
 
 ## Logging
 
@@ -121,5 +137,5 @@ After authorized as user one can perform these operations
 JUnit tests are implemented. Zipped coverage report file can be obtainable under
 `/src/test/docs` folder.
 * Class coverage: 100%
-* Method coverage: 74%
-* Line coverage: 79%
+* Method coverage: 75.5%
+* Line coverage: 77.7%

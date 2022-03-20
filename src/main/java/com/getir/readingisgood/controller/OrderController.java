@@ -64,7 +64,8 @@ public class OrderController {
 
     @PostMapping("/order")
     @Transactional
-    @Operation(summary = "Creates an order in the database", description = "Any authorized user can perform this operation")
+    @Operation(summary = "Creates an order in the database", description = "Any authorized user can perform this operation <br/>" +
+            "The system generates an error when book id is not found or book stock is not available at that moment")
     @ApiResponse(responseCode = "200", description = "Order taken")
     @ApiResponse(responseCode = "400", description = "Request is not proper")
     public ResponseEntity<ObjectResponse<OrderResponse>> createOrder(@Valid @RequestBody OrderRequest orderRequest) {
@@ -97,7 +98,7 @@ public class OrderController {
                 ob.setOrder(order);
                 if (book.get().getStockCount() < obr.getQuantity()) {
                     throw new GeneralException(GeneralException.ErrorCode.BOOK_NOT_ENOUGH_QUANTITY
-                            , " Book quantity is less than availabe: " + obr.getBookId() + ":" + obr.getQuantity());
+                            , " Book quantity is less than available: " + obr.getBookId() + ":" + obr.getQuantity());
                 }
                 ob.setQuantity(obr.getQuantity());
                 ob.setBook(book.get());
@@ -125,7 +126,8 @@ public class OrderController {
         }
     }
 
-    @Operation(summary = "Get Order Details By Order Id", description = "ROLE_ADMIN can see all orders, ROLE_USER can see their order")
+    @Operation(summary = "Get Order Details By Order Id", description = "ROLE_ADMIN can see all orders, ROLE_USER can see their order <br/>" +
+            "If the customer has ROLE_USER role, they can only see the order if it is placed by them")
     @Parameter(name = "id", description = "Order id to search", required = true)
     @ApiResponse(responseCode = "200", description = "Order found")
     @GetMapping("/order/{id}")
@@ -135,7 +137,6 @@ public class OrderController {
             if (order.isPresent()) {
                 UserDetails userDetails =
                         (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
                 if (userDetails.getAuthorities().stream().filter(a -> a.getAuthority().equals("ROLE_ADMIN")).count() == 0) {
                     if (!userDetails.getUsername().equals(order.get().getCustomer().getEmail()))
                         return ResponseEntity.badRequest().body(new QueryObjectResponse<>(
@@ -163,26 +164,24 @@ public class OrderController {
     @GetMapping("/order")
     public ResponseEntity<QueryObjectResponse<List<OrderResponse>>> queryOrder(
             @RequestParam(value = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-            @RequestParam(value = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
-        try {
+            @RequestParam(value = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
+            @Valid @RequestParam(value = "limit", required = false, defaultValue = "20")
+            @Min(value = 1, message = "Limit cannot be lower than 1") Integer limit,
+            @RequestParam(value = "page", required = false, defaultValue = "0")
+            @Min(value = 0, message = "Page cannot be lower than 0") Integer page) {
 
-            List<Order> orders = orderRepository.getAllBetweenDates(startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
-                    , endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
-            if (orders.size() < 1) {
-                throw new GeneralException(GeneralException.ErrorCode.ORDER_NOT_FOUND
-                        , " Order not found between chosen dates");
-            } else {
-                return new ResponseEntity<>(new QueryObjectResponse<>(orders.stream().map(OrderResponse::new).collect(Collectors.toList())
-                        , ControllerHelper.getQueryMap("startDate", startDate, "endDate", endDate))
-                        , HttpStatus.OK);
-            }
-        } catch (GeneralException e) {
-            logger.error("", e);
-            return new ResponseEntity<>(new QueryObjectResponse<>(e, ControllerHelper.getQueryMap("startDate", startDate, "endDate", endDate)), HttpStatus.BAD_REQUEST);
-        }
+
+        List<Order> orders = orderRepository.getAllBetweenDates(startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+                , endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(), PageRequest.of(page, limit));
+
+        return new ResponseEntity<>(new QueryObjectResponse<>(orders.stream().map(OrderResponse::new).collect(Collectors.toList())
+                , ControllerHelper.getQueryMap("startDate", startDate, "endDate", endDate, "page", page, "limit", limit))
+                , HttpStatus.OK);
+
+
     }
 
-    @Operation(summary = "Get All Orders", description = "All users can use this function")
+    @Operation(summary = "Get All Orders of a customer with Pagination", description = "All users can use this function to query their orders")
     @GetMapping("/orders")
     public ResponseEntity<QueryObjectResponse<List<OrderResponse>>> queryOrders(
             @Valid @RequestParam(value = "limit", required = false, defaultValue = "20")

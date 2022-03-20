@@ -2,6 +2,7 @@ package com.getir.readingisgood.repository;
 
 import com.getir.readingisgood.domain.Customer;
 import com.getir.readingisgood.domain.Order;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query(value = "Select o from Order o where o.orderDate BETWEEN :startDate AND :endDate ORDER  BY o.orderDate desc")
-    public List<Order> getAllBetweenDates(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
+    public List<Order> getAllBetweenDates(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, Pageable pageable);
 
     @Query(value = "Select EXTRACT(YEAR FROM o.order_date) as  yr,EXTRACT(MONTH FROM o.order_date) as mt" +
             ",count(distinct o.id),sum(ob.price)" +

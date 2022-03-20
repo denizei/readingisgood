@@ -2,10 +2,13 @@ package com.getir.readingisgood.model.request;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class BookRequest {
+    @Size(max = 60, min = 1)
     @NotNull
     private String name;
+    @Size(max = 50, min = 1)
     @NotNull
     private String author;
     @NotNull
@@ -13,6 +16,7 @@ public class BookRequest {
     private Double price;
     @NotNull
     private Integer publicationYear;
+    @Size(min = 13)
     @NotNull
     private String isbn;
     @NotNull
