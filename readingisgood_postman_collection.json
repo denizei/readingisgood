@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"ashketchumexample@example.com\",\r\n    \"password\":\"abcd1234\"\r\n}",
+					"raw": "{\r\n    \"email\":\"ashketchumexample@example.com\",\r\n    \"password\":\"1234\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -40,7 +40,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"denizemeksiz@gmail.com\",\r\n    \"password\":\"asdf1234\"\r\n}",
+					"raw": "{\r\n    \"email\":\"ashketchumexample@example.com\",\r\n    \"password\":\"abcd1234\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -68,7 +68,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"denizemeksiz@gmail.com\",\r\n    \"password\":\"asdf1234\"\r\n}",
+					"raw": "{\r\n    \"email\":\"deniz@example.com\",\r\n    \"password\":\"asdf1234\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -97,7 +97,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NjE3MTc1LCJpYXQiOjE2NDc1MTcxNzV9.ivTAD3eGOiQSpCN9ePPoTonKj4gxr61dzF4VSVFFiLYu-bdoGD21wj4MmnAdIntH6-hWcft5k7uh95fV4wbmWw",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pekBleGFtcGxlLmNvbSIsImV4cCI6MTY0Nzc3NTc5OSwiaWF0IjoxNjQ3NzY0OTk5fQ.Sj8JvTh1nVXH4yIvIeFyMCLAFPMk_WYwFV4wWaDpndEneuN6TQSUU7U6xZo6EWAhgQY7aifMCMffUdF9aOLOVw",
 							"type": "string"
 						}
 					]
@@ -106,7 +106,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"name\": \"Harry Potter\",\r\n        \"author\": \"J.K. Rowling\",\r\n        \"price\": 30,\r\n        \"isbn\" : 1234123123111,\r\n        \"publicationYear\": 1980,\r\n        \"stockCount\": 142\r\n    }",
+					"raw": "{\r\n        \"name\": \"Mistborn\",\r\n        \"author\": \"Brandon Sanderson\",\r\n        \"price\": 30,\r\n        \"isbn\" : 1234123122211,\r\n        \"publicationYear\": 2004,\r\n        \"stockCount\": 142\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -179,7 +179,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/book/3",
+					"raw": "http://localhost:8082/api/book/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -188,7 +188,7 @@
 					"path": [
 						"api",
 						"book",
-						"3"
+						"2"
 					]
 				}
 			},
@@ -203,7 +203,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/api/book",
+					"raw": "http://localhost:8082/api/book/4555",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -211,7 +211,8 @@
 					"port": "8082",
 					"path": [
 						"api",
-						"book"
+						"book",
+						"4555"
 					]
 				}
 			},
@@ -226,7 +227,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/api/book",
+					"raw": "http://localhost:8082/api/book/adasdff",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -234,7 +235,8 @@
 					"port": "8082",
 					"path": [
 						"api",
-						"book"
+						"book",
+						"adasdff"
 					]
 				}
 			},
@@ -249,7 +251,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8082/api/book",
+					"raw": "http://localhost:8082/api/book?name=a",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -258,6 +260,12 @@
 					"path": [
 						"api",
 						"book"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "a"
+						}
 					]
 				}
 			},
@@ -270,7 +278,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"name\": \"Lelouch\",\r\n        \"surname\": \"Lampelouge\",\r\n        \"email\": \"lelouchexample@example.com\",\r\n        \"address\": \"Tokyo Prefecture Japan\",\r\n        \"password\": \"aaa111\"\r\n\r\n    \r\n}",
+					"raw": "{\r\n        \"name\": \"Kaladin\",\r\n        \"surname\": \"Stormblessed\",\r\n        \"email\": \"kaladin@example.com\",\r\n        \"address\": \"Aa 123 Roshar\",\r\n        \"password\": \"aaa111\"\r\n\r\n    \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -327,11 +335,21 @@
 		{
 			"name": "Place an order",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NjI5MTQwLCJpYXQiOjE2NDc1MjkxNDB9.CLbNMI3zwN7jtGF7DZzEeIrJDMjmDmyItKtrS-Lt43H5g6MPXFgDHUh7P1WO9KNA7v-KsJUcjxmyZEKTT1DGWQ",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"customerId\": 3,\r\n        \"books\": [\r\n            {\r\n                \"bookId\":1,\r\n                \"quantity\": 2\r\n            },\r\n            {\r\n                \"bookId\":2,\r\n                \"quantity\": 1\r\n            }\r\n        ]\r\n        \r\n    \r\n}",
+					"raw": "{\r\n        \"books\": [\r\n            {\r\n                \"bookId\":68,\r\n                \"quantity\": 1\r\n            },\r\n            {\r\n                \"bookId\":354,\r\n                \"quantity\":2\r\n            }\r\n        ]\r\n        \r\n    \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -359,6 +377,16 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NzMxNzk5LCJpYXQiOjE2NDc2MzE3OTl9.QvqwNkDSHfBybCnXWJqbVN7W7qConCVLkjxJv2Kl3dzHyIzuPIUwaG0_3wvPZMvxMe2AAPQc9T9vC-wlsE6vgQ",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -371,7 +399,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/order/4",
+					"raw": "http://localhost:8082/api/order/34",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -380,7 +408,7 @@
 					"path": [
 						"api",
 						"order",
-						"4"
+						"34"
 					]
 				}
 			},
@@ -429,23 +457,11 @@
 		},
 		{
 			"name": "Query orders with start and end dates",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n        \"startDate\": \"2020-01-01 00:00:00\",\r\n        \"endDate\":\"2023-01-01 00:00:00\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:8082/api/order/query",
+					"raw": "http://localhost:8082/api/order?startDate=2020-01-01&endDate=2023-01-01",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -453,8 +469,17 @@
 					"port": "8082",
 					"path": [
 						"api",
-						"order",
-						"query"
+						"order"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2020-01-01"
+						},
+						{
+							"key": "endDate",
+							"value": "2023-01-01"
+						}
 					]
 				}
 			},
@@ -463,6 +488,16 @@
 		{
 			"name": "View Customer's Orders",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NzQwMTczLCJpYXQiOjE2NDc2NDAxNzN9.QIYB7TC7uhyjmvNxrbZFcGSHNXlFmhflzrCAgj2worw8OWkG4wk9JOUiKNJyFtGi75t7iTPV84anc-k1Ig4WvA",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -494,14 +529,29 @@
 		{
 			"name": "Update a Book",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NjE4ODQ2LCJpYXQiOjE2NDc1MTg4NDZ9.ovmzDlUySLhAvJVSO6ANo73vGhvFw5q8BghPjugYou0pFch1FqdDTUBbheuFp9CAoLGGpckym4qIGBfg6sb1Lw",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n       \r\n        \"price\": 20,\r\n        \"stockCount\": 12\r\n    }"
+					"raw": "{\r\n        \"price\": 21,\r\n        \"stockCount\": 14\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/book/60",
+					"raw": "http://localhost:8082/api/book/68",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -510,7 +560,7 @@
 					"path": [
 						"api",
 						"book",
-						"60"
+						"68"
 					]
 				}
 			},
@@ -595,14 +645,7 @@
 			},
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NjE4ODQ2LCJpYXQiOjE2NDc1MTg4NDZ9.ovmzDlUySLhAvJVSO6ANo73vGhvFw5q8BghPjugYou0pFch1FqdDTUBbheuFp9CAoLGGpckym4qIGBfg6sb1Lw",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
@@ -641,7 +684,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhc2hrZXRjaHVtZXhhbXBsZUBleGFtcGxlLmNvbSIsImV4cCI6MTY0NzYyNjY1OCwiaWF0IjoxNjQ3NTI2NjU4fQ.4ftbaNFXj1PUpD9ip6ggnR8R8gZaQZwgraOepjKXcN6ExaLeLnoxCUMVc60guiEt2o0PyRrcJnACu2XpL4nt5Q",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pekBleGFtcGxlLmNvbSIsImV4cCI6MTY0Nzc3NjU2MSwiaWF0IjoxNjQ3NzY1NzYxfQ.l4a_nI09r_cKzyMCgV7tQcUmVM9H-Yu0DdH5VG1KN6cmY-yAU0Lqu7V7s_kotoTMLl2Pcrymeqi5RAxU2YEgRQ",
 							"type": "string"
 						}
 					]
@@ -680,7 +723,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NjE4ODQ2LCJpYXQiOjE2NDc1MTg4NDZ9.ovmzDlUySLhAvJVSO6ANo73vGhvFw5q8BghPjugYou0pFch1FqdDTUBbheuFp9CAoLGGpckym4qIGBfg6sb1Lw",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pekBleGFtcGxlLmNvbSIsImV4cCI6MTY0NzcyOTU1MCwiaWF0IjoxNjQ3NzE4NzUwfQ.q5FOMPo2oO0KLu49XbdYLiEiGD2OeFE18DVSnhUwv_HwIIYqbQo7PO7HCRtvQv5XvqRvSU60zyp39dI4427jtA",
 							"type": "string"
 						}
 					]
@@ -689,7 +732,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"customerId\": 1,\r\n        \"books\": [\r\n            {\r\n                \"bookId\":33,\r\n                \"quantity\": 3\r\n            },\r\n            {\r\n                \"bookId\":2,\r\n                \"quantity\": 1\r\n            }\r\n        ]\r\n        \r\n    \r\n}",
+					"raw": "{\r\n        \"books\": [\r\n            {\r\n                \"bookId\":33,\r\n                \"quantity\": -3\r\n            },\r\n            {\r\n                \"bookId\":2,\r\n                \"quantity\": 1\r\n            }\r\n        ]\r\n        \r\n    \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -719,7 +762,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NzMxNzk5LCJpYXQiOjE2NDc2MzE3OTl9.QvqwNkDSHfBybCnXWJqbVN7W7qConCVLkjxJv2Kl3dzHyIzuPIUwaG0_3wvPZMvxMe2AAPQc9T9vC-wlsE6vgQ",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pekBleGFtcGxlLmNvbSIsImV4cCI6MTY0Nzc3NjU2MSwiaWF0IjoxNjQ3NzY1NzYxfQ.l4a_nI09r_cKzyMCgV7tQcUmVM9H-Yu0DdH5VG1KN6cmY-yAU0Lqu7V7s_kotoTMLl2Pcrymeqi5RAxU2YEgRQ",
 							"type": "string"
 						}
 					]
