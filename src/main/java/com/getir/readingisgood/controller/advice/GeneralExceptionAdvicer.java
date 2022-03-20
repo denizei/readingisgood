@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/*
+    A global exception handler class
+ */
 @ControllerAdvice
 public class GeneralExceptionAdvicer {
     Logger logger = LoggerFactory.getLogger(GeneralExceptionAdvicer.class);

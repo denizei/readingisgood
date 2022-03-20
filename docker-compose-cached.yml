@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  readingisgood_denizei_cache:
+    image: readingisgood_denizei_cache
+    build:
+      context: .
+      dockerfile: ./Dockerfile_cached
+    ports:
+      - 8082:8082

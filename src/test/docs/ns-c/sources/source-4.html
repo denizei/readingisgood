@@ -1,0 +1,146 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > JwtRequest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.getir.readingisgood.model.request</a>
+</div>
+
+<h1>Coverage Summary for Class: JwtRequest (com.getir.readingisgood.model.request)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">JwtRequest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (5/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    71.4%
+  </span>
+  <span class="absValue">
+    (10/14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.getir.readingisgood.model.request;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;
+<i class="no-highlight">4</i>&nbsp;import javax.validation.constraints.NotNull;
+<i class="no-highlight">5</i>&nbsp;import java.io.Serializable;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;public class JwtRequest implements Serializable {
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;    private static final long serialVersionUID = 592646858123450707L;
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;    @NotNull
+<i class="no-highlight">12</i>&nbsp;    private String email;
+<i class="no-highlight">13</i>&nbsp;    @NotNull
+<i class="no-highlight">14</i>&nbsp;    private String password;
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;    //need default constructor for JSON Parsing
+<b class="fc"><i class="no-highlight">17</i>&nbsp;    public JwtRequest() {</b>
+<b class="fc"><i class="no-highlight">18</i>&nbsp;</b>
+<i class="no-highlight">19</i>&nbsp;    }
+<i class="no-highlight">20</i>&nbsp;
+<b class="nc"><i class="no-highlight">21</i>&nbsp;    public JwtRequest(String email, String password) {</b>
+<b class="nc"><i class="no-highlight">22</i>&nbsp;        this.email = email;</b>
+<b class="nc"><i class="no-highlight">23</i>&nbsp;        this.password = password;</b>
+<b class="nc"><i class="no-highlight">24</i>&nbsp;    }</b>
+<i class="no-highlight">25</i>&nbsp;
+<i class="no-highlight">26</i>&nbsp;    public String getEmail() {
+<b class="fc"><i class="no-highlight">27</i>&nbsp;        return email;</b>
+<b class="fc"><i class="no-highlight">28</i>&nbsp;    }</b>
+<i class="no-highlight">29</i>&nbsp;
+<i class="no-highlight">30</i>&nbsp;    public void setEmail(String email) {
+<b class="fc"><i class="no-highlight">31</i>&nbsp;        this.email = email;</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;    }</b>
+<i class="no-highlight">33</i>&nbsp;
+<i class="no-highlight">34</i>&nbsp;    public String getPassword() {
+<b class="fc"><i class="no-highlight">35</i>&nbsp;        return password;</b>
+<b class="fc"><i class="no-highlight">36</i>&nbsp;    }</b>
+<i class="no-highlight">37</i>&nbsp;
+<i class="no-highlight">38</i>&nbsp;    public void setPassword(String password) {
+<b class="fc"><i class="no-highlight">39</i>&nbsp;        this.password = password;</b>
+<b class="fc"><i class="no-highlight">40</i>&nbsp;    }</b>
+<i class="no-highlight">41</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-03-20 11:37</div>
+</div>
+</body>
+</html>

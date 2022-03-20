@@ -1,7 +1,5 @@
 package com.getir.readingisgood.model.exception;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -18,6 +18,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/*
+    Configures request flow to check JWT Token
+    Some request patterns are excluded from JwtToken checklist
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -54,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable().antMatcher("/db/**").headers().frameOptions().disable().and()
                 .antMatcher("/**")
                 .authorizeRequests().antMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/**"
-                        , "/db/**","/", "/api/book/**", "/api/customer", "/authenticate")
+                        , "/db/**", "/", "/api/book/**", "/api/customer", "/authenticate")
                 .permitAll()
                 .anyRequest().authenticated().and().
                 exceptionHandling()

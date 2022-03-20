@@ -17,6 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/*
+    OncePerRequestFilter extension
+    Checks the Bearer token and validates it
+    If user is validated, system passes the request to next filter
+    Otherwise a UsernameNotFoundException raises from jwtUserDetailsService
+    and request does not pass to the related controller.
+ */
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
@@ -34,8 +41,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         String email = null;
         String jwtToken = null;
-        // JWT Token is in the form "Bearer token". Remove Bearer word and get
-        // only the Token
+        // JWT Token is in the form "Bearer jwttoken".
 
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);

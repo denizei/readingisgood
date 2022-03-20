@@ -14,7 +14,11 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
-
+/*
+    UserDetailsService implementation
+    Checks the customer from database and returns a UserDetails object with their role
+    If a customer is not found, UsernameNotFoundException is thrown.
+ */
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
@@ -23,10 +27,10 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<Customer> cust = customerRepository.findByEmail(email);
-        if (cust.isPresent()) {
-            return new User(cust.get().getEmail(), cust.get().getPassword(),
-                    new ArrayList<>(Arrays.asList(new SimpleGrantedAuthority(cust.get().getRole().name()))));
+        Optional<Customer> customer = customerRepository.findByEmail(email);
+        if (customer.isPresent()) {
+            return new User(customer.get().getEmail(), customer.get().getPassword(),
+                    new ArrayList<>(Arrays.asList(new SimpleGrantedAuthority(customer.get().getRole().name()))));
         } else {
             throw new UsernameNotFoundException("User not found with email: " + email);
         }

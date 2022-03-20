@@ -1,0 +1,756 @@
+{
+	"info": {
+		"_postman_id": "ab4ef7d2-bdb5-4c37-b822-c14d8ee941d5",
+		"name": "Reading is Good",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Wrong Authentication",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"ashketchumexample@example.com\",\r\n    \"password\":\"abcd1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticate as User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"denizemeksiz@gmail.com\",\r\n    \"password\":\"asdf1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticate as Admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"denizemeksiz@gmail.com\",\r\n    \"password\":\"asdf1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NjE3MTc1LCJpYXQiOjE2NDc1MTcxNzV9.ivTAD3eGOiQSpCN9ePPoTonKj4gxr61dzF4VSVFFiLYu-bdoGD21wj4MmnAdIntH6-hWcft5k7uh95fV4wbmWw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"name\": \"Harry Potter\",\r\n        \"author\": \"J.K. Rowling\",\r\n        \"price\": 30,\r\n        \"isbn\" : 1234123123111,\r\n        \"publicationYear\": 1980,\r\n        \"stockCount\": 142\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all the books in database",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query a book with id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NjE4ODQ2LCJpYXQiOjE2NDc1MTg4NDZ9.ovmzDlUySLhAvJVSO6ANo73vGhvFw5q8BghPjugYou0pFch1FqdDTUBbheuFp9CAoLGGpckym4qIGBfg6sb1Lw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"name\": \"Words of Radiance\",\r\n        \"author\": \"Brandon Sanderson\",\r\n        \"price\": 22,\r\n        \"isbn\" : 1234567891235,\r\n        \"publicationYear\": 2014,\r\n        \"stockCount\": 6\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/book/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"book",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get book in database by id - not found",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get book in database by invalid id",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search books with keyword",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new Customer with USER role",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"name\": \"Lelouch\",\r\n        \"surname\": \"Lampelouge\",\r\n        \"email\": \"lelouchexample@example.com\",\r\n        \"address\": \"Tokyo Prefecture Japan\",\r\n        \"password\": \"aaa111\"\r\n\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Customer - duplicate error",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"name\": \"Ash\",\r\n        \"surname\": \"Ketchum\",\r\n        \"email\": \"ashketchumexample@example.com\",\r\n        \"address\": \"12 Kanto District Japan\",\r\n        \"password\": \"abcd1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place an order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"customerId\": 3,\r\n        \"books\": [\r\n            {\r\n                \"bookId\":1,\r\n                \"quantity\": 2\r\n            },\r\n            {\r\n                \"bookId\":2,\r\n                \"quantity\": 1\r\n            }\r\n        ]\r\n        \r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Order",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/order/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"order",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order Status Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NjI5MTQwLCJpYXQiOjE2NDc1MjkxNDB9.CLbNMI3zwN7jtGF7DZzEeIrJDMjmDmyItKtrS-Lt43H5g6MPXFgDHUh7P1WO9KNA7v-KsJUcjxmyZEKTT1DGWQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"orderStatus\": \"PREPARING\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/order/changestatus/161",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"order",
+						"changestatus",
+						"161"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query orders with start and end dates",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"startDate\": \"2020-01-01 00:00:00\",\r\n        \"endDate\":\"2023-01-01 00:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/order/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"order",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Customer's Orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/customer/orders?page=-1&limit=-5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"customer",
+						"orders"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "-1"
+						},
+						{
+							"key": "limit",
+							"value": "-5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Book",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \r\n        \"price\": 20,\r\n        \"stockCount\": 12\r\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/book/60",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"book",
+						"60"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Book with Error",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NjE4ODQ2LCJpYXQiOjE2NDc1MTg4NDZ9.ovmzDlUySLhAvJVSO6ANo73vGhvFw5q8BghPjugYou0pFch1FqdDTUBbheuFp9CAoLGGpckym4qIGBfg6sb1Lw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"price\": 20,\r\n        \"stockCount\": -1\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/book/68",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"book",
+						"68"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query of customer without token",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query of customer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NjE4ODQ2LCJpYXQiOjE2NDc1MTg4NDZ9.ovmzDlUySLhAvJVSO6ANo73vGhvFw5q8BghPjugYou0pFch1FqdDTUBbheuFp9CAoLGGpckym4qIGBfg6sb1Lw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query of books by User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhc2hrZXRjaHVtZXhhbXBsZUBleGFtcGxlLmNvbSIsImV4cCI6MTY0NzYyNjY1OCwiaWF0IjoxNjQ3NTI2NjU4fQ.4ftbaNFXj1PUpD9ip6ggnR8R8gZaQZwgraOepjKXcN6ExaLeLnoxCUMVc60guiEt2o0PyRrcJnACu2XpL4nt5Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Order from User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NjE4ODQ2LCJpYXQiOjE2NDc1MTg4NDZ9.ovmzDlUySLhAvJVSO6ANo73vGhvFw5q8BghPjugYou0pFch1FqdDTUBbheuFp9CAoLGGpckym4qIGBfg6sb1Lw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"customerId\": 1,\r\n        \"books\": [\r\n            {\r\n                \"bookId\":33,\r\n                \"quantity\": 3\r\n            },\r\n            {\r\n                \"bookId\":2,\r\n                \"quantity\": 1\r\n            }\r\n        ]\r\n        \r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Display Monthly Statistics",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZW5pemVtZWtzaXpAZ21haWwuY29tIiwiZXhwIjoxNjQ3NzMxNzk5LCJpYXQiOjE2NDc2MzE3OTl9.QvqwNkDSHfBybCnXWJqbVN7W7qConCVLkjxJv2Kl3dzHyIzuPIUwaG0_3wvPZMvxMe2AAPQc9T9vC-wlsE6vgQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/stats/monthly?startDate=2020-01&endDate=2023-01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"stats",
+						"monthly"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2020-01"
+						},
+						{
+							"key": "endDate",
+							"value": "2023-01"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

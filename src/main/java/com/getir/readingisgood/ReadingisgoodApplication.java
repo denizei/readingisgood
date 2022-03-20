@@ -8,7 +8,6 @@ public class ReadingisgoodApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ReadingisgoodApplication.class, args);
-        System.out.println("Application Started");
     }
 
 }

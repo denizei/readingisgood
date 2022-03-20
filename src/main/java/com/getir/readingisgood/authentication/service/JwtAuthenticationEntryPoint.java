@@ -14,6 +14,9 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
 
     private static final long serialVersionUID = -78575L;
 
+    /*
+       If user fails to authenticate with email and password, the system returns unauthorized response
+     */
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,
                          AuthenticationException authException) throws IOException {

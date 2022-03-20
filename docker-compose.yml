@@ -1,8 +1,8 @@
 version: '3.4'
 
 services:
-  readingisgood:
-    image: readingisgood
+  readingisgood_denizei:
+    image: readingisgood_denizei
     build:
       context: .
       dockerfile: ./Dockerfile

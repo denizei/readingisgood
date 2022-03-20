@@ -1,0 +1,230 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Book</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.getir.readingisgood.domain</a>
+</div>
+
+<h1>Coverage Summary for Class: Book (com.getir.readingisgood.domain)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Book</td>
+<td class="coverageStat">
+  <span class="percent">
+    93.8%
+  </span>
+  <span class="absValue">
+    (15/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.7%
+  </span>
+  <span class="absValue">
+    (36/38)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Book$HibernateProxy$0cYcdj6R</td>
+  </tr>
+  <tr>
+    <td class="name">Book$HibernateProxy$0tmDZDnQ</td>
+  </tr>
+  <tr>
+    <td class="name">Book$HibernateProxy$CuS20fzN</td>
+  </tr>
+  <tr>
+    <td class="name">Book$HibernateProxy$Jv5lMwKk</td>
+  </tr>
+  <tr>
+    <td class="name">Book$HibernateProxy$m15QyjKI</td>
+  </tr>
+  <tr>
+    <td class="name">Book$HibernateProxy$nDI5SuRK</td>
+  </tr>
+  <tr>
+    <td class="name">Book$HibernateProxy$nmwjrglh</td>
+  </tr>
+  <tr>
+    <td class="name">Book$HibernateProxy$RSJqeoX1</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    93.8%
+  </span>
+  <span class="absValue">
+    (15/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.7%
+  </span>
+  <span class="absValue">
+    (36/38)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.getir.readingisgood.domain;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import javax.persistence.*;
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;@Entity
+<i class="no-highlight">6</i>&nbsp;@Table(name = &quot;BOOK&quot;)
+<i class="no-highlight">7</i>&nbsp;public class Book implements BaseEntity {
+<i class="no-highlight">8</i>&nbsp;    @Id
+<i class="no-highlight">9</i>&nbsp;    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+<i class="no-highlight">10</i>&nbsp;    protected Long id;
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;    @Column(name = &quot;name&quot;, length = 60, nullable = false)
+<i class="no-highlight">13</i>&nbsp;    private String name;
+<i class="no-highlight">14</i>&nbsp;    @Column(name = &quot;author&quot;, length = 50, nullable = false)
+<i class="no-highlight">15</i>&nbsp;    private String author;
+<i class="no-highlight">16</i>&nbsp;    @Column(name = &quot;price&quot;, nullable = false)
+<i class="no-highlight">17</i>&nbsp;    private Double price;
+<i class="no-highlight">18</i>&nbsp;    @Column(name = &quot;publication_year&quot;, nullable = false)
+<i class="no-highlight">19</i>&nbsp;    private Integer publicationYear;
+<i class="no-highlight">20</i>&nbsp;    @Column(name = &quot;isbn&quot;, length = 13, nullable = false, unique = true)
+<i class="no-highlight">21</i>&nbsp;    private String isbn;
+<i class="no-highlight">22</i>&nbsp;    @Column(name = &quot;stock_count&quot;, nullable = false)
+<i class="no-highlight">23</i>&nbsp;    private Long stockCount;
+<i class="no-highlight">24</i>&nbsp;
+<b class="fc"><i class="no-highlight">25</i>&nbsp;    public Book() {</b>
+<b class="fc"><i class="no-highlight">26</i>&nbsp;    }</b>
+<i class="no-highlight">27</i>&nbsp;
+<b class="fc"><i class="no-highlight">28</i>&nbsp;    public Book(String name, String author, Double price, Integer publicationYear, String isbn, Long stockCount) {</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;        this.name = name;</b>
+<b class="fc"><i class="no-highlight">30</i>&nbsp;        this.author = author;</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;        this.price = price;</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;        this.publicationYear = publicationYear;</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;        this.isbn = isbn;</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;        this.stockCount = stockCount;</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;    }</b>
+<i class="no-highlight">36</i>&nbsp;
+<i class="no-highlight">37</i>&nbsp;    @Override
+<i class="no-highlight">38</i>&nbsp;    public Long getId() {
+<b class="fc"><i class="no-highlight">39</i>&nbsp;        return id;</b>
+<b class="fc"><i class="no-highlight">40</i>&nbsp;    }</b>
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;    @Override
+<i class="no-highlight">43</i>&nbsp;    public void setId(Long id) {
+<b class="nc"><i class="no-highlight">44</i>&nbsp;        this.id = id;</b>
+<b class="nc"><i class="no-highlight">45</i>&nbsp;    }</b>
+<i class="no-highlight">46</i>&nbsp;
+<i class="no-highlight">47</i>&nbsp;    public String getName() {
+<b class="fc"><i class="no-highlight">48</i>&nbsp;        return name;</b>
+<b class="fc"><i class="no-highlight">49</i>&nbsp;    }</b>
+<i class="no-highlight">50</i>&nbsp;
+<i class="no-highlight">51</i>&nbsp;    public void setName(String name) {
+<b class="fc"><i class="no-highlight">52</i>&nbsp;        this.name = name;</b>
+<b class="fc"><i class="no-highlight">53</i>&nbsp;    }</b>
+<i class="no-highlight">54</i>&nbsp;
+<i class="no-highlight">55</i>&nbsp;    public String getAuthor() {
+<b class="fc"><i class="no-highlight">56</i>&nbsp;        return author;</b>
+<b class="fc"><i class="no-highlight">57</i>&nbsp;    }</b>
+<i class="no-highlight">58</i>&nbsp;
+<i class="no-highlight">59</i>&nbsp;    public void setAuthor(String author) {
+<b class="fc"><i class="no-highlight">60</i>&nbsp;        this.author = author;</b>
+<b class="fc"><i class="no-highlight">61</i>&nbsp;    }</b>
+<i class="no-highlight">62</i>&nbsp;
+<i class="no-highlight">63</i>&nbsp;    public Double getPrice() {
+<b class="fc"><i class="no-highlight">64</i>&nbsp;        return price;</b>
+<b class="fc"><i class="no-highlight">65</i>&nbsp;    }</b>
+<i class="no-highlight">66</i>&nbsp;
+<i class="no-highlight">67</i>&nbsp;    public void setPrice(Double price) {
+<b class="fc"><i class="no-highlight">68</i>&nbsp;        this.price = price;</b>
+<b class="fc"><i class="no-highlight">69</i>&nbsp;    }</b>
+<i class="no-highlight">70</i>&nbsp;
+<i class="no-highlight">71</i>&nbsp;    public Long getStockCount() {
+<b class="fc"><i class="no-highlight">72</i>&nbsp;        return stockCount;</b>
+<b class="fc"><i class="no-highlight">73</i>&nbsp;    }</b>
+<i class="no-highlight">74</i>&nbsp;
+<i class="no-highlight">75</i>&nbsp;    public void setStockCount(Long stockCount) {
+<b class="fc"><i class="no-highlight">76</i>&nbsp;        this.stockCount = stockCount;</b>
+<b class="fc"><i class="no-highlight">77</i>&nbsp;    }</b>
+<i class="no-highlight">78</i>&nbsp;
+<i class="no-highlight">79</i>&nbsp;    public Integer getPublicationYear() {
+<b class="fc"><i class="no-highlight">80</i>&nbsp;        return publicationYear;</b>
+<b class="fc"><i class="no-highlight">81</i>&nbsp;    }</b>
+<i class="no-highlight">82</i>&nbsp;
+<i class="no-highlight">83</i>&nbsp;    public void setPublicationYear(Integer publicationYear) {
+<b class="fc"><i class="no-highlight">84</i>&nbsp;        this.publicationYear = publicationYear;</b>
+<b class="fc"><i class="no-highlight">85</i>&nbsp;    }</b>
+<i class="no-highlight">86</i>&nbsp;
+<i class="no-highlight">87</i>&nbsp;    public String getIsbn() {
+<b class="fc"><i class="no-highlight">88</i>&nbsp;        return isbn;</b>
+<b class="fc"><i class="no-highlight">89</i>&nbsp;    }</b>
+<i class="no-highlight">90</i>&nbsp;
+<i class="no-highlight">91</i>&nbsp;    public void setIsbn(String isbn) {
+<b class="fc"><i class="no-highlight">92</i>&nbsp;        this.isbn = isbn;</b>
+<b class="fc"><i class="no-highlight">93</i>&nbsp;    }</b>
+<i class="no-highlight">94</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-03-20 11:37</div>
+</div>
+</body>
+</html>

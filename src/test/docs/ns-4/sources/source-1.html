@@ -1,0 +1,176 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > JwtTokenUtil</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.getir.readingisgood.authentication.util</a>
+</div>
+
+<h1>Coverage Summary for Class: JwtTokenUtil (com.getir.readingisgood.authentication.util)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">JwtTokenUtil</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    33.3%
+  </span>
+  <span class="absValue">
+    (3/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    43.5%
+  </span>
+  <span class="absValue">
+    (10/23)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.getir.readingisgood.authentication.util;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import io.jsonwebtoken.Claims;
+<i class="no-highlight">4</i>&nbsp;import io.jsonwebtoken.Jwts;
+<i class="no-highlight">5</i>&nbsp;import io.jsonwebtoken.SignatureAlgorithm;
+<i class="no-highlight">6</i>&nbsp;import org.springframework.beans.factory.annotation.Value;
+<i class="no-highlight">7</i>&nbsp;import org.springframework.security.core.userdetails.UserDetails;
+<i class="no-highlight">8</i>&nbsp;import org.springframework.stereotype.Component;
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;import java.io.Serializable;
+<i class="no-highlight">11</i>&nbsp;import java.util.Date;
+<i class="no-highlight">12</i>&nbsp;import java.util.HashMap;
+<i class="no-highlight">13</i>&nbsp;import java.util.Map;
+<i class="no-highlight">14</i>&nbsp;import java.util.function.Function;
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;@Component
+<b class="fc"><i class="no-highlight">17</i>&nbsp;public class JwtTokenUtil implements Serializable {</b>
+<b class="fc"><i class="no-highlight">18</i>&nbsp;</b>
+<i class="no-highlight">19</i>&nbsp;    private static final long serialVersionUID = -4523185161236007488L;
+<i class="no-highlight">20</i>&nbsp;
+<i class="no-highlight">21</i>&nbsp;    @Value(&quot;${jwt.secret}&quot;)
+<i class="no-highlight">22</i>&nbsp;    private String secret;
+<i class="no-highlight">23</i>&nbsp;
+<i class="no-highlight">24</i>&nbsp;    @Value(&quot;${jwt.expirationMs}&quot;)
+<i class="no-highlight">25</i>&nbsp;    private Long expirationMs;
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;    //retrieve username from jwt token
+<i class="no-highlight">28</i>&nbsp;    public String getEmailFromToken(String token) {
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        return getClaimFromToken(token, Claims::getSubject);</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;    }</b>
+<i class="no-highlight">31</i>&nbsp;
+<i class="no-highlight">32</i>&nbsp;    //retrieve expiration date from jwt token
+<i class="no-highlight">33</i>&nbsp;    public Date getExpirationDateFromToken(String token) {
+<b class="nc"><i class="no-highlight">34</i>&nbsp;        return getClaimFromToken(token, Claims::getExpiration);</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;    }</b>
+<i class="no-highlight">36</i>&nbsp;
+<i class="no-highlight">37</i>&nbsp;    public &lt;T&gt; T getClaimFromToken(String token, Function&lt;Claims, T&gt; claimsResolver) {
+<b class="nc"><i class="no-highlight">38</i>&nbsp;        final Claims claims = getAllClaimsFromToken(token);</b>
+<b class="nc"><i class="no-highlight">39</i>&nbsp;        return claimsResolver.apply(claims);</b>
+<b class="nc"><i class="no-highlight">40</i>&nbsp;    }</b>
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;    //for retrieveing any information from token we will need the secret key
+<i class="no-highlight">43</i>&nbsp;    private Claims getAllClaimsFromToken(String token) {
+<b class="nc"><i class="no-highlight">44</i>&nbsp;        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();</b>
+<i class="no-highlight">45</i>&nbsp;    }
+<i class="no-highlight">46</i>&nbsp;
+<i class="no-highlight">47</i>&nbsp;    //check if the token has expired
+<i class="no-highlight">48</i>&nbsp;    private Boolean isTokenExpired(String token) {
+<b class="nc"><i class="no-highlight">49</i>&nbsp;        final Date expiration = getExpirationDateFromToken(token);</b>
+<b class="nc"><i class="no-highlight">50</i>&nbsp;        return expiration.before(new Date());</b>
+<i class="no-highlight">51</i>&nbsp;    }
+<i class="no-highlight">52</i>&nbsp;
+<i class="no-highlight">53</i>&nbsp;    //generate token for user
+<i class="no-highlight">54</i>&nbsp;    public String generateToken(UserDetails userDetails) {
+<b class="fc"><i class="no-highlight">55</i>&nbsp;        Map&lt;String, Object&gt; claims = new HashMap&lt;&gt;();</b>
+<b class="fc"><i class="no-highlight">56</i>&nbsp;        return doGenerateToken(claims, userDetails.getUsername());</b>
+<i class="no-highlight">57</i>&nbsp;    }
+<i class="no-highlight">58</i>&nbsp;
+<i class="no-highlight">59</i>&nbsp;    private String doGenerateToken(Map&lt;String, Object&gt; claims, String subject) {
+<i class="no-highlight">60</i>&nbsp;
+<b class="fc"><i class="no-highlight">61</i>&nbsp;        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))</b>
+<b class="fc"><i class="no-highlight">62</i>&nbsp;                .setExpiration(new Date(System.currentTimeMillis() + expirationMs))</b>
+<b class="fc"><i class="no-highlight">63</i>&nbsp;                .signWith(SignatureAlgorithm.HS512, secret).compact();</b>
+<i class="no-highlight">64</i>&nbsp;    }
+<i class="no-highlight">65</i>&nbsp;
+<b class="fc"><i class="no-highlight">66</i>&nbsp;    //validate token</b>
+<b class="fc"><i class="no-highlight">67</i>&nbsp;    public Boolean validateToken(String token, UserDetails userDetails) {</b>
+<b class="fc"><i class="no-highlight">68</i>&nbsp;        final String username = getEmailFromToken(token);</b>
+<b class="nc"><i class="no-highlight">69</i>&nbsp;        return (username.equals(userDetails.getUsername()) &amp;&amp; !isTokenExpired(token));</b>
+<i class="no-highlight">70</i>&nbsp;    }
+<i class="no-highlight">71</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-03-20 11:37</div>
+</div>
+</body>
+</html>

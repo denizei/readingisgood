@@ -2,8 +2,9 @@ FROM openjdk:17
 VOLUME /tmp
 ARG JAVA_OPTS
 ENV JAVA_OPTS=$JAVA_OPTS
-COPY target/readingisgood-0.0.1-SNAPSHOT.jar readingisgood.jar
+COPY bookstoredb.mv.db bookstoredb.mv.db
+COPY target/readingisgood-0.0.1-SNAPSHOT.jar readingisgood_denizei.jar
 EXPOSE 8082
-ENTRYPOINT exec java $JAVA_OPTS -jar readingisgood.jar
+ENTRYPOINT exec java $JAVA_OPTS -jar readingisgood_denizei.jar
 # For Spring-Boot project, use the entrypoint below to reduce Tomcat startup time.
 #ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar readingisgood.jar

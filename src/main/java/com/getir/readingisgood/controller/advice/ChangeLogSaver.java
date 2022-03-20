@@ -23,18 +23,26 @@ public class ChangeLogSaver {
     @Autowired
     CustomerRepository customerRepository;
 
+    //save a log with no older entity and jwt validated customer
     public void saveLog(BaseEntity o, String newValue) {
         saveLog(o, null, null, newValue);
     }
 
+    //save a log with jwt validated customer
     public void saveLog(BaseEntity o, String oldValue, String newValue) {
         saveLog(o, null, oldValue, newValue);
     }
 
+    //save a log with no older entity and a given customer
     public void saveLog(BaseEntity o, Customer customer, String newValue) {
         saveLog(o, customer, null, newValue);
     }
 
+    /*
+        Detect status from entity class
+        Find jwt validated customer if it needs
+        Save the change log or throws no exception
+     */
     public void saveLog(BaseEntity o, Customer customer, String oldValue, String newValue) {
         try {
             if (o.getId() == null)
@@ -60,13 +68,17 @@ public class ChangeLogSaver {
         }
     }
 
+    //get JWT validated UserDetails from SecuredContextHolder and returns related customer
     public Optional<Customer> getValidCustomer() {
         UserDetails userDetails =
                 (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return customerRepository.findByEmail(userDetails.getUsername());
     }
 
+    //A no exception list of log saver
     public void saveLogs(List<ChangeLog> logs) {
+        if (logs == null)
+            return;
         for (ChangeLog log : logs) {
             try {
                 changeLogRepository.save(log);

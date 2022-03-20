@@ -1,0 +1,229 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ChangeLog</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.getir.readingisgood.domain</a>
+</div>
+
+<h1>Coverage Summary for Class: ChangeLog (com.getir.readingisgood.domain)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ChangeLog</td>
+<td class="coverageStat">
+  <span class="percent">
+    12.5%
+  </span>
+  <span class="absValue">
+    (2/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    28.2%
+  </span>
+  <span class="absValue">
+    (11/39)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ChangeLog$HibernateProxy$2SUdjExB</td>
+  </tr>
+  <tr>
+    <td class="name">ChangeLog$HibernateProxy$7uicCUHQ</td>
+  </tr>
+  <tr>
+    <td class="name">ChangeLog$HibernateProxy$Eb547rGI</td>
+  </tr>
+  <tr>
+    <td class="name">ChangeLog$HibernateProxy$eoyDgzLl</td>
+  </tr>
+  <tr>
+    <td class="name">ChangeLog$HibernateProxy$fdXR2B2J</td>
+  </tr>
+  <tr>
+    <td class="name">ChangeLog$HibernateProxy$G2NULG2N</td>
+  </tr>
+  <tr>
+    <td class="name">ChangeLog$HibernateProxy$phWpHDij</td>
+  </tr>
+  <tr>
+    <td class="name">ChangeLog$HibernateProxy$xs0mueGz</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    12.5%
+  </span>
+  <span class="absValue">
+    (2/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    28.2%
+  </span>
+  <span class="absValue">
+    (11/39)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.getir.readingisgood.domain;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import javax.persistence.*;
+<i class="no-highlight">4</i>&nbsp;import java.time.LocalDateTime;
+<i class="no-highlight">5</i>&nbsp;
+<i class="no-highlight">6</i>&nbsp;@Entity
+<i class="no-highlight">7</i>&nbsp;@Table(name = &quot;CHANGE_LOG&quot;)
+<i class="no-highlight">8</i>&nbsp;public class ChangeLog {
+<i class="no-highlight">9</i>&nbsp;    @Id
+<i class="no-highlight">10</i>&nbsp;    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+<i class="no-highlight">11</i>&nbsp;    private Long id;
+<i class="no-highlight">12</i>&nbsp;    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+<i class="no-highlight">13</i>&nbsp;    @JoinColumn(name = &quot;customer_id&quot;, nullable = false)
+<i class="no-highlight">14</i>&nbsp;    private Customer customer;
+<i class="no-highlight">15</i>&nbsp;    @Column(name = &quot;entity_id&quot;, nullable = false)
+<i class="no-highlight">16</i>&nbsp;    private Long entityId;
+<i class="no-highlight">17</i>&nbsp;    @Column(name = &quot;action_date&quot;, nullable = false)
+<i class="no-highlight">18</i>&nbsp;    private LocalDateTime actionDate;
+<i class="no-highlight">19</i>&nbsp;    @Column(name = &quot;status&quot;, nullable = false)
+<i class="no-highlight">20</i>&nbsp;    private ChangeLogActionType actionType;
+<i class="no-highlight">21</i>&nbsp;    @Column(name = &quot;old_value&quot;)
+<i class="no-highlight">22</i>&nbsp;    private String oldValue;
+<i class="no-highlight">23</i>&nbsp;    @Column(name = &quot;new_value&quot;, nullable = false)
+<i class="no-highlight">24</i>&nbsp;    private String newValue;
+<i class="no-highlight">25</i>&nbsp;
+<b class="fc"><i class="no-highlight">26</i>&nbsp;    public ChangeLog() {</b>
+<i class="no-highlight">27</i>&nbsp;    }
+<b class="fc"><i class="no-highlight">28</i>&nbsp;</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;    public ChangeLog(Customer customer, Long entityId, ChangeLogActionType actionType, String oldValue, String newValue) {</b>
+<b class="fc"><i class="no-highlight">30</i>&nbsp;        this.customer = customer;</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;        this.entityId = entityId;</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;        this.actionType = actionType;</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;        this.oldValue = oldValue;</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;        this.newValue = newValue;</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;        this.actionDate = LocalDateTime.now();</b>
+<b class="fc"><i class="no-highlight">36</i>&nbsp;    }</b>
+<b class="fc"><i class="no-highlight">37</i>&nbsp;</b>
+<i class="no-highlight">38</i>&nbsp;    public Long getId() {
+<b class="nc"><i class="no-highlight">39</i>&nbsp;        return id;</b>
+<i class="no-highlight">40</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">41</i>&nbsp;</b>
+<i class="no-highlight">42</i>&nbsp;    public void setId(Long id) {
+<b class="nc"><i class="no-highlight">43</i>&nbsp;        this.id = id;</b>
+<i class="no-highlight">44</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">45</i>&nbsp;</b>
+<i class="no-highlight">46</i>&nbsp;    public Customer getCustomer() {
+<b class="nc"><i class="no-highlight">47</i>&nbsp;        return customer;</b>
+<i class="no-highlight">48</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">49</i>&nbsp;</b>
+<i class="no-highlight">50</i>&nbsp;    public void setCustomer(Customer customer) {
+<b class="nc"><i class="no-highlight">51</i>&nbsp;        this.customer = customer;</b>
+<i class="no-highlight">52</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">53</i>&nbsp;</b>
+<i class="no-highlight">54</i>&nbsp;    public Long getEntityId() {
+<b class="nc"><i class="no-highlight">55</i>&nbsp;        return entityId;</b>
+<i class="no-highlight">56</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">57</i>&nbsp;</b>
+<i class="no-highlight">58</i>&nbsp;    public void setEntityId(Long entityId) {
+<b class="nc"><i class="no-highlight">59</i>&nbsp;        this.entityId = entityId;</b>
+<i class="no-highlight">60</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">61</i>&nbsp;</b>
+<i class="no-highlight">62</i>&nbsp;    public LocalDateTime getActionDate() {
+<b class="nc"><i class="no-highlight">63</i>&nbsp;        return actionDate;</b>
+<i class="no-highlight">64</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">65</i>&nbsp;</b>
+<i class="no-highlight">66</i>&nbsp;    public void setActionDate(LocalDateTime actionDate) {
+<b class="nc"><i class="no-highlight">67</i>&nbsp;        this.actionDate = actionDate;</b>
+<i class="no-highlight">68</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">69</i>&nbsp;</b>
+<i class="no-highlight">70</i>&nbsp;    public ChangeLogActionType getActionType() {
+<b class="nc"><i class="no-highlight">71</i>&nbsp;        return actionType;</b>
+<i class="no-highlight">72</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">73</i>&nbsp;</b>
+<i class="no-highlight">74</i>&nbsp;    public void setActionType(ChangeLogActionType actionType) {
+<b class="nc"><i class="no-highlight">75</i>&nbsp;        this.actionType = actionType;</b>
+<i class="no-highlight">76</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">77</i>&nbsp;</b>
+<i class="no-highlight">78</i>&nbsp;    public String getOldValue() {
+<b class="nc"><i class="no-highlight">79</i>&nbsp;        return oldValue;</b>
+<i class="no-highlight">80</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">81</i>&nbsp;</b>
+<i class="no-highlight">82</i>&nbsp;    public void setOldValue(String oldValue) {
+<b class="nc"><i class="no-highlight">83</i>&nbsp;        this.oldValue = oldValue;</b>
+<i class="no-highlight">84</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">85</i>&nbsp;</b>
+<i class="no-highlight">86</i>&nbsp;    public String getNewValue() {
+<b class="nc"><i class="no-highlight">87</i>&nbsp;        return newValue;</b>
+<i class="no-highlight">88</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">89</i>&nbsp;</b>
+<i class="no-highlight">90</i>&nbsp;    public void setNewValue(String newValue) {
+<b class="nc"><i class="no-highlight">91</i>&nbsp;        this.newValue = newValue;</b>
+<i class="no-highlight">92</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">93</i>&nbsp;}</b>
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-03-20 11:37</div>
+</div>
+</body>
+</html>

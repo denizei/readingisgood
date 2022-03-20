@@ -17,6 +17,7 @@ public class ControllerHelper {
         return map;
     }
 
+    // hash the password with a mixer string
     public static String getHashedPassword(String password) {
         password += "reigo";
         MessageDigest m = null;
@@ -27,7 +28,6 @@ public class ControllerHelper {
             byte[] digest = m.digest();
             BigInteger bigInt = new BigInteger(1, digest);
             String hashtext = bigInt.toString(16);
-// Now we need to zero pad it if you actually want the full 32 chars.
             while (hashtext.length() < 32) {
                 hashtext = "0" + hashtext;
             }
