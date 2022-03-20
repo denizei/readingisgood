@@ -29,7 +29,7 @@ Project is created with:
 [Swagger Documentation]: http://localhost:8082/swagger-ui/index.html
 ## Setup
 All the commands below are needed to run on project path.
-* Firstly run `.\mvnw clean install` to create project jar file.
+* Firstly run `./mvnw clean install` to create project jar file.
 * Then run `docker compose up -d` and the project starts from address `http://localhost:8082/`
 * To stop use command `docker compose down`
 
