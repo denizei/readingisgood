@@ -106,7 +106,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"name\": \"Mistborn\",\r\n        \"author\": \"Brandon Sanderson\",\r\n        \"price\": 30,\r\n        \"isbn\" : 1234123122211,\r\n        \"publicationYear\": 2004,\r\n        \"stockCount\": 142\r\n    }",
+					"raw": "{\r\n        \"name\": \"Harry Potter and The Philosopher's Stone\",\r\n        \"author\": \"J.K. Rowling\",\r\n        \"price\": 30,\r\n        \"isbn\" : 1234123662211,\r\n        \"publicationYear\": 1980,\r\n        \"stockCount\": 142\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -732,7 +732,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"books\": [\r\n            {\r\n                \"bookId\":33,\r\n                \"quantity\": -3\r\n            },\r\n            {\r\n                \"bookId\":2,\r\n                \"quantity\": 1\r\n            }\r\n        ]\r\n        \r\n    \r\n}",
+					"raw": "{\r\n        \"books\": [\r\n            {\r\n                \"bookId\":33,\r\n                \"quantity\": 3\r\n            },\r\n            {\r\n                \"bookId\":2,\r\n                \"quantity\": 1\r\n            }\r\n        ]\r\n        \r\n    \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
