@@ -3,7 +3,7 @@ VOLUME /tmp
 ARG JAVA_OPTS
 ENV JAVA_OPTS=$JAVA_OPTS
 COPY bookstoredb.mv.db bookstoredb.mv.db
-COPY dist/readingisgood_denizei.jar readingisgood_denizei.jar
+COPY cached/readingisgood_denizei.jar readingisgood_denizei.jar
 EXPOSE 8082
 ENTRYPOINT exec java $JAVA_OPTS -jar readingisgood_denizei.jar
 # For Spring-Boot project, use the entrypoint below to reduce Tomcat startup time.
