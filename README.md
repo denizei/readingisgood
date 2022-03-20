@@ -41,7 +41,9 @@ If you have problem about creating jar file, you can use pre-installed jar file 
 For testing purposes, database is made reachable on purpose and can be reached
 by using the link below
 [DB] (http://localhost:8082/db/)
-* username:un
+* Driver Class: `org.h2.Driver`
+* JDBC URL: `jdbc:h2:file:./bookstoredb`
+* username: `un`
 * password: (no password needed)
 
 Some sample data are already inserted in database.
