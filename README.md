@@ -2,7 +2,7 @@
 
 Simple bookstore app that can perform the operations books and orders.
 
-##Assumptions and Workflow
+## Assumptions and Workflow
 
 There are 2 types of users in this project
 * Standard Users with USER type who can query books, place an order and watch them
@@ -47,7 +47,7 @@ by using the link below
 Some sample data are already inserted in database.
 `bookstoredb.mv.db` is the file which includes the database.
 
-###Tables 
+#### Tables 
 * `CUSTOMER` => id, email, name, surname, registration_date, password, status, role, address
 * `BOOK` => id, name, author, price, publication_year, isbn, stock_count
 * `ORDER` => id, customer_id, order_date, status
