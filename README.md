@@ -116,9 +116,8 @@ After authorized as user one can perform these operations
   * MONTHLY_REPORT_FETCHED : 6
 
 ## Tests
-JUnit tests are implemented. Zipped coverage report file can be obtainable from [HERE].
-
-[HERE]: https://github.com/denizei/readingisgood/tree/main/src/test/docs/coveragereport.zip
+JUnit tests are implemented. Zipped coverage report file can be obtainable under
+`/src/test/docs` folder.
 * Class coverage: 100%
 * Method coverage: 74%
 * Line coverage: 79%
