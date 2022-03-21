@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 public class OrderBookRequest {
     @NotNull
-    private Long bookId;
+    private String bookId;
 
     @NotNull
     @Min(value = 1, message = "Book ")
@@ -16,16 +16,16 @@ public class OrderBookRequest {
 
     }
 
-    public OrderBookRequest(Long bookId, Integer quantity) {
+    public OrderBookRequest(String bookId, Integer quantity) {
         this.bookId = bookId;
         this.quantity = quantity;
     }
 
-    public Long getBookId() {
+    public String getBookId() {
         return bookId;
     }
 
-    public void setBookId(Long bookId) {
+    public void setBookId(String bookId) {
         this.bookId = bookId;
     }
 

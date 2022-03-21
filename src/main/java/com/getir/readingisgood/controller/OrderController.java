@@ -13,7 +13,6 @@ import com.getir.readingisgood.model.request.OrderRequest;
 import com.getir.readingisgood.model.request.OrderStatusRequest;
 import com.getir.readingisgood.repository.BookRepository;
 import com.getir.readingisgood.repository.CustomerRepository;
-import com.getir.readingisgood.repository.OrderBookRepository;
 import com.getir.readingisgood.repository.OrderRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -32,7 +31,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.time.LocalDateTime;
@@ -57,13 +55,11 @@ public class OrderController {
     OrderRepository orderRepository;
     @Autowired
     CustomerRepository customerRepository;
-    @Autowired
-    OrderBookRepository orderBookRepository;
+
     @Autowired
     ChangeLogSaver changeLogSaver;
 
     @PostMapping("/order")
-    @Transactional
     @Operation(summary = "Creates an order in the database", description = "Any authorized user can perform this operation <br/>" +
             "The system generates an error when book id is not found or book stock is not available at that moment")
     @ApiResponse(responseCode = "200", description = "Order taken")
@@ -82,7 +78,6 @@ public class OrderController {
             order.setCustomer(customer.get());
             order.setOrderDate(LocalDateTime.now());
             order.setStatus(OrderStatus.ORDER_TAKEN);
-            List<OrderBook> orderBooks = new ArrayList<>();
             List<Book> books = new ArrayList<>();
             List<ChangeLog> bookChanges = new ArrayList<>();
             int totalBooks = 0;
@@ -95,7 +90,6 @@ public class OrderController {
                             , " Book not found: " + obr.getBookId());
                 }
                 OrderBook ob = new OrderBook();
-                ob.setOrder(order);
                 if (book.get().getStockCount() < obr.getQuantity()) {
                     throw new GeneralException(GeneralException.ErrorCode.BOOK_NOT_ENOUGH_QUANTITY
                             , " Book quantity is less than available: " + obr.getBookId() + ":" + obr.getQuantity());
@@ -103,7 +97,7 @@ public class OrderController {
                 ob.setQuantity(obr.getQuantity());
                 ob.setBook(book.get());
                 ob.setPrice(book.get().getPrice() * obr.getQuantity());
-                orderBooks.add(ob);
+                order.getBooks().add(ob);
                 long newStock = book.get().getStockCount() - obr.getQuantity();
                 bookChanges.add(new ChangeLog(order.getCustomer(), book.get().getId(), ChangeLogActionType.BOOK_UPDATE_BY_ORDER
                         , "stock: " + book.get().getStockCount(), "stock: " + newStock));
@@ -113,10 +107,8 @@ public class OrderController {
                 totalPrice += ob.getPrice();
             }
             order = orderRepository.save(order);
-            orderBookRepository.saveAll(orderBooks);
             bookRepository.saveAll(books);
             OrderResponse orderResponse = new OrderResponse(order);
-            orderBooks.forEach(ob -> orderResponse.getBooks().add(new OrderBookResponse(ob)));
             changeLogSaver.saveLog(order, order.getCustomer(), "books: " + totalBooks + ", price: " + totalPrice);
             changeLogSaver.saveLogs(bookChanges);
             return new ResponseEntity<>(new ObjectResponse<>(orderResponse), HttpStatus.CREATED);
@@ -131,7 +123,7 @@ public class OrderController {
     @Parameter(name = "id", description = "Order id to search", required = true)
     @ApiResponse(responseCode = "200", description = "Order found")
     @GetMapping("/order/{id}")
-    public ResponseEntity<QueryObjectResponse<OrderResponse>> getOrderByKey(@PathVariable("id") long id) {
+    public ResponseEntity<QueryObjectResponse<OrderResponse>> getOrderByKey(@PathVariable("id") String id) {
         try {
             Optional<Order> order = orderRepository.findById(id);
             if (order.isPresent()) {
@@ -192,7 +184,7 @@ public class OrderController {
                 (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Optional<Customer> customer = customerRepository.findByEmail(userDetails.getUsername());
-        List<Order> orders = orderRepository.findByCustomer(customer.get(), PageRequest.of(page, limit));
+        List<Order> orders = orderRepository.findByCustomer(customer.get().getId(), PageRequest.of(page, limit));
         return new ResponseEntity<>(new QueryObjectResponse<>(orders.stream().map(OrderResponse::new).collect(Collectors.toList())
                 , ControllerHelper.getQueryMap("page", page, "limit", limit))
                 , HttpStatus.OK);
@@ -203,7 +195,7 @@ public class OrderController {
     @Parameter(name = "id", description = "Order Id", required = true)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/order/changestatus/{id}")
-    public ResponseEntity<ObjectResponse<OrderResponse>> updateOrderStatus(@PathVariable("id") long id, @Valid @RequestBody OrderStatusRequest orderStatusRequest) {
+    public ResponseEntity<ObjectResponse<OrderResponse>> updateOrderStatus(@PathVariable("id") String id, @Valid @RequestBody OrderStatusRequest orderStatusRequest) {
         Optional<Order> order = orderRepository.findById(id);
         if (order.isPresent()) {
             Order updatedOrder = order.get();

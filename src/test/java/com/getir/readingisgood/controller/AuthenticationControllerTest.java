@@ -39,7 +39,7 @@ public class AuthenticationControllerTest extends AbstractTest {
         super.setUp();
 
         Customer admin = new Customer();
-        admin.setId(1l);
+        admin.setId("6237b1f1f50b9293944dd4d4");
         admin.setName("Admin");
         admin.setSurname("sn");
         admin.setRole(CustomerRole.ROLE_ADMIN);

@@ -1,25 +1,19 @@
 package com.getir.readingisgood.domain;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "BOOK")
+
+@Document("book")
 public class Book implements BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    protected Long id;
+    protected String id;
 
-    @Column(name = "name", length = 60, nullable = false)
     private String name;
-    @Column(name = "author", length = 50, nullable = false)
     private String author;
-    @Column(name = "price", nullable = false)
     private Double price;
-    @Column(name = "publication_year", nullable = false)
     private Integer publicationYear;
-    @Column(name = "isbn", length = 13, nullable = false, unique = true)
     private String isbn;
-    @Column(name = "stock_count", nullable = false)
     private Long stockCount;
 
     public Book() {
@@ -35,12 +29,12 @@ public class Book implements BaseEntity {
     }
 
     @Override
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
     @Override
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

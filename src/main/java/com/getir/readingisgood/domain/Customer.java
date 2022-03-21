@@ -1,29 +1,21 @@
 package com.getir.readingisgood.domain;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "CUSTOMER")
+@Document("customer")
 public class Customer implements BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
-    @Column(name = "name", length = 30, nullable = false)
+    private String id;
     private String name;
-    @Column(name = "surname", length = 50, nullable = false)
     private String surname;
-    @Column(name = "email", nullable = false)
     private String email;
-    @Column(name = "registration_date")
     private LocalDateTime registrationDate;
-    @Column(name = "status")
     private CustomerStatus status;
-    @Column(name = "address")
     private String address;
-    @Column(name = "password")
     private String password;
-    @Column(name = "role")
     private CustomerRole role;
 
     public Customer() {
@@ -41,11 +33,11 @@ public class Customer implements BaseEntity {
         this.role = role;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

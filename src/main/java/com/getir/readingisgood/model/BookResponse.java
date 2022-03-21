@@ -4,7 +4,7 @@ import com.getir.readingisgood.domain.Book;
 
 public class BookResponse {
 
-    private Long id;
+    private String id;
     private String name;
     private String author;
     private Double price;
@@ -58,11 +58,11 @@ public class BookResponse {
         this.stockCount = stockCount;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

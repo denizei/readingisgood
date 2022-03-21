@@ -34,6 +34,7 @@ public class CustomerControllerTest extends AbstractTest {
 
     @Test
     public void createCustomerTest() throws Exception {
+        customerRepository.deleteAll();
         String uri = "/api/customer";
 
         CustomerRequest customer = new CustomerRequest();

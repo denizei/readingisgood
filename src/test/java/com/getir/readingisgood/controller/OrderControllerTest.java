@@ -8,7 +8,6 @@ import com.getir.readingisgood.model.request.OrderRequest;
 import com.getir.readingisgood.model.request.OrderStatusRequest;
 import com.getir.readingisgood.repository.BookRepository;
 import com.getir.readingisgood.repository.CustomerRepository;
-import com.getir.readingisgood.repository.OrderBookRepository;
 import com.getir.readingisgood.repository.OrderRepository;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.*;
@@ -45,27 +44,30 @@ public class OrderControllerTest extends AbstractTest {
     @Autowired
     OrderRepository orderRepository;
 
-    @Autowired
-    OrderBookRepository orderBookRepository;
 
     @Autowired
     CustomerRepository customerRepository;
 
-    Long orderId = null;
+    String orderId = null;
     com.getir.readingisgood.domain.Order order;
 
-    Long book1Id = null;
+    String book1Id = null;
     com.getir.readingisgood.domain.Book book1;
-    Long book2Id = null;
+    String book2Id = null;
     com.getir.readingisgood.domain.Book book2;
 
-    Long adminId = null;
+    String adminId = null;
     Customer admin;
-    Long userId = null;
+    String userId = null;
     Customer user;
 
     @BeforeEach
     public void setUp() {
+        if(orderId==null) {
+            orderRepository.deleteAll();
+            bookRepository.deleteAll();
+            customerRepository.deleteAll();
+        }
         logger.info("BookControllerTest setting  up");
         super.setUp();
         getUser();
@@ -92,7 +94,7 @@ public class OrderControllerTest extends AbstractTest {
                 .andReturn();
         JSONObject jsonObject = new JSONObject(mvcResult.getResponse().getContentAsString());
         assertEquals(true, jsonObject.isNull("error"));
-        orderId = jsonObject.getJSONObject("data").getLong("id");
+        orderId = jsonObject.getJSONObject("data").getString("id");
         logger.info(jsonObject.toString());
         assertEquals(200, jsonObject.getInt("status"));
         assertEquals(2, jsonObject.getJSONObject("data").getJSONArray("books").length());
@@ -247,27 +249,9 @@ public class OrderControllerTest extends AbstractTest {
         assertEquals(HttpStatus.OK.value(), status);
         assertEquals(jsonObject.getInt("status"), 200);
         assertEquals(true, jsonObject.isNull("error"));
-        assertEquals(jsonObject.getJSONObject("data").getInt("id"), order.getId());
+        assertEquals(jsonObject.getJSONObject("data").getString("id"), order.getId());
     }
 
-    @Test
-    @WithMockUser(username = "adminperson@example.com", password = "123456", roles = "ADMIN")
-    @Order(3)
-    public void getOrderByIdInvalidTest() throws Exception {
-        String uri = "/api/order/asdfg";
-
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
-                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
-
-        int status = mvcResult.getResponse().getStatus();
-        JSONObject jsonObject = new JSONObject(mvcResult.getResponse().getContentAsString());
-        logger.info(jsonObject.toString());
-        assertEquals(HttpStatus.UNPROCESSABLE_ENTITY.value(), status);
-        assertEquals(jsonObject.getInt("status"), 400);
-        assertEquals(true, jsonObject.isNull("data"));
-        assertEquals(jsonObject.getJSONObject("error").getInt("code"),
-                GeneralException.ErrorCode.FIELDS_ARE_NOT_SET_CORRECTLY.getCode());
-    }
 
     @Test
     @WithMockUser(username = "someperson@example.com", password = "123456", roles = "USER")
@@ -392,13 +376,12 @@ public class OrderControllerTest extends AbstractTest {
             order.setCustomer(getUser());
 
             OrderBook b1 = new OrderBook();
-            b1.setOrder(order);
+
             b1.setBook(getBook1());
             b1.setPrice(b1.getBook().getPrice() * 4);
             b1.setQuantity(4);
 
             OrderBook b2 = new OrderBook();
-            b2.setOrder(order);
             b2.setBook(getBook2());
             b2.setPrice(getBook2().getPrice() * 2);
             b2.setQuantity(2);
@@ -428,7 +411,6 @@ public class OrderControllerTest extends AbstractTest {
             book1.setIsbn("1234562923456");
             book1 = bookRepository.save(book1);
             book1Id = book1.getId();
-            bookRepository.flush();
         } else
             book1 = bookRepository.findById(book1Id).get();
         return book1;
@@ -445,7 +427,6 @@ public class OrderControllerTest extends AbstractTest {
             book2.setIsbn("9934567123466");
             book2 = bookRepository.save(book2);
             book2Id = book2.getId();
-            bookRepository.flush();
         } else
             book2 = bookRepository.findById(book2Id).get();
         return book2;
@@ -463,7 +444,6 @@ public class OrderControllerTest extends AbstractTest {
             user.setStatus(CustomerStatus.ACTIVE);
             user.setRole(CustomerRole.ROLE_USER);
             user = customerRepository.save(user);
-            customerRepository.flush();
             userId = user.getId();
         } else
             user = customerRepository.findById(userId).get();
@@ -482,7 +462,6 @@ public class OrderControllerTest extends AbstractTest {
             admin.setStatus(CustomerStatus.ACTIVE);
             admin.setRole(CustomerRole.ROLE_ADMIN);
             admin = customerRepository.save(admin);
-            customerRepository.flush();
             adminId = admin.getId();
         } else
             admin = customerRepository.findById(adminId).get();

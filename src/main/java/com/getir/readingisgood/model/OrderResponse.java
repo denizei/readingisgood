@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderResponse {
-    private Long id;
+    private String id;
     private OrderCustomerResponse customer;
     private String status;
     private LocalDateTime time;
@@ -25,11 +25,11 @@ public class OrderResponse {
         order.getBooks().forEach(orderBook -> books.add(new OrderBookResponse(orderBook)));
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

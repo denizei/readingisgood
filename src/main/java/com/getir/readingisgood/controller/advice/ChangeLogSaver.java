@@ -6,6 +6,7 @@ import com.getir.readingisgood.repository.CustomerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import java.util.Optional;
 @Component
 public class ChangeLogSaver {
     Logger logger = LoggerFactory.getLogger(ChangeLogSaver.class);
+
 
     @Autowired
     ChangeLogRepository changeLogRepository;
@@ -54,7 +56,7 @@ public class ChangeLogSaver {
                 type = oldValue == null ? ChangeLogActionType.ORDER_INSERT : ChangeLogActionType.ORDER_UPDATE;
             else if (o instanceof Customer)
                 type = ChangeLogActionType.CUSTOMER_CREATED;
-            else if (o.getId() == -1)
+            else if ("-1".equals(o.getId()))
                 type = ChangeLogActionType.MONTHLY_REPORT_FETCHED;
 
             if (customer == null)

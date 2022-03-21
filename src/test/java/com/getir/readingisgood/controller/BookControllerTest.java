@@ -43,23 +43,25 @@ public class BookControllerTest extends AbstractTest {
     @MockBean
     CustomerRepository customerRepository;
 
-    Long bookId = null;
+    String bookId = null;
     Book book;
 
 
     @BeforeEach
     public void setUp() {
+        if(bookId==null)
+            bookRepository.deleteAll();
         logger.info("BookControllerTest setting  up");
         super.setUp();
         Customer admin = new Customer();
-        admin.setId(1l);
+        admin.setId("6237b1eabc469d05a235ac84");
         admin.setName("Admin");
         admin.setSurname("sn");
         admin.setEmail("adminperson@example.com");
         when(customerRepository.findByEmail("adminperson@example.com"))
                 .thenReturn(Optional.of(admin));
         Customer user = new Customer();
-        user.setId(2l);
+        user.setId("6237b1f1f50b9293944dd4d4");
         user.setName("User");
         user.setSurname("sn");
         user.setEmail("userperson@example.com");
@@ -92,7 +94,7 @@ public class BookControllerTest extends AbstractTest {
         assertEquals(jsonObject.getJSONObject("data").getString("isbn"), "1234567123456");
         assertEquals(jsonObject.getJSONObject("data").getString("name"), "Dune");
         assertEquals(jsonObject.getJSONObject("data").getLong("stockCount"), 12L);
-        bookId = jsonObject.getJSONObject("data").getLong("id");
+        bookId = jsonObject.getJSONObject("data").getString("id");
 
 
         bookRequest = new BookRequest();
@@ -249,26 +251,8 @@ public class BookControllerTest extends AbstractTest {
         assertEquals(HttpStatus.OK.value(), status);
         assertEquals(jsonObject.getInt("status"), 200);
         assertEquals(true, jsonObject.isNull("error"));
-        assertEquals(jsonObject.getJSONObject("data").getInt("id"), book.getId());
+        assertEquals(jsonObject.getJSONObject("data").getString("id"), book.getId());
         assertEquals(jsonObject.getJSONObject("data").getString("name"), "Dune");
-    }
-
-    @Test
-    @Order(3)
-    public void getBookByIdInvalidTest() throws Exception {
-        String uri = "/api/book/asdfg";
-
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
-                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
-
-        int status = mvcResult.getResponse().getStatus();
-        JSONObject jsonObject = new JSONObject(mvcResult.getResponse().getContentAsString());
-        logger.info(jsonObject.toString());
-        assertEquals(HttpStatus.UNPROCESSABLE_ENTITY.value(), status);
-        assertEquals(jsonObject.getInt("status"), 400);
-        assertEquals(true, jsonObject.isNull("data"));
-        assertEquals(jsonObject.getJSONObject("error").getInt("code"),
-                GeneralException.ErrorCode.FIELDS_ARE_NOT_SET_CORRECTLY.getCode());
     }
 
     @Test

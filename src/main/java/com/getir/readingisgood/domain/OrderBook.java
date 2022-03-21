@@ -1,34 +1,22 @@
 package com.getir.readingisgood.domain;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name = "ORDER_BOOK")
+
 public class OrderBook {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "order_id")
-    private Order order;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "book_id")
     private Book book;
-    @JoinColumn(name = "quantity")
+
     private Integer quantity;
-    @JoinColumn(name = "price")
+
     private Double price;
 
     public OrderBook() {
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
+    public OrderBook(Book book, Integer quantity, Double price) {
+        this.book = book;
+        this.quantity = quantity;
+        this.price = price;
     }
 
     public Book getBook() {

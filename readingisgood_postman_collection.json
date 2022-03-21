@@ -109,7 +109,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"name\": \"Harry Potter and The Philosopher's Stone\",\r\n        \"author\": \"J.K. Rowling\",\r\n        \"price\": 30,\r\n        \"isbn\" : 1234123662211,\r\n        \"publicationYear\": 1980,\r\n        \"stockCount\": 142\r\n    }",
+					"raw": "{\r\n        \"name\": \"Harry Potter and The Prisoner of Azkaban\",\r\n        \"author\": \"J.K. Rowling\",\r\n        \"price\": 30,\r\n        \"isbn\" : 1234554321123,\r\n        \"publicationYear\": 1980,\r\n        \"stockCount\": 142\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -124,6 +124,82 @@
 					"path": [
 						"api",
 						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"price\": 21.5,\r\n        \"stockCount\": 22\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{path}}/api/book/{{sampleBook}}",
+					"host": [
+						"{{path}}"
+					],
+					"path": [
+						"api",
+						"book",
+						"{{sampleBook}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Book with Error",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"price\": 20,\r\n        \"stockCount\": -1\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{path}}/api/book/6237bc3647bbe112c787bbd2",
+					"host": [
+						"{{path}}"
+					],
+					"path": [
+						"api",
+						"book",
+						"6237bc3647bbe112c787bbd2"
 					]
 				}
 			},
@@ -171,14 +247,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{path}}/api/book/2",
+					"raw": "{{path}}/api/book/{{sampleBook}}",
 					"host": [
 						"{{path}}"
 					],
 					"path": [
 						"api",
 						"book",
-						"2"
+						"{{sampleBook}}"
 					]
 				}
 			},
@@ -207,28 +283,6 @@
 			"response": []
 		},
 		{
-			"name": "Get book in database by invalid id",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{path}}/api/book/adasdff",
-					"host": [
-						"{{path}}"
-					],
-					"path": [
-						"api",
-						"book",
-						"adasdff"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Search books with keyword",
 			"request": {
 				"auth": {
@@ -237,7 +291,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{path}}/api/book?name=a",
+					"raw": "{{path}}/api/book?name=king",
 					"host": [
 						"{{path}}"
 					],
@@ -248,7 +302,7 @@
 					"query": [
 						{
 							"key": "name",
-							"value": "a"
+							"value": "king"
 						}
 					]
 				}
@@ -265,7 +319,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"name\": \"Kaladin\",\r\n        \"surname\": \"Stormblessed\",\r\n        \"email\": \"kaladin@example.com\",\r\n        \"address\": \"Aa 123 Roshar\",\r\n        \"password\": \"aaa111\"\r\n\r\n    \r\n}",
+					"raw": "{\r\n        \"name\": \"Kaladin\",\r\n        \"surname\": \"Stormblessed\",\r\n        \"email\": \"kaladin@example.com\",\r\n        \"address\": \"Aa 123 Roshar\",\r\n        \"password\": \"aaa111\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -332,7 +386,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"books\": [\r\n            {\r\n                \"bookId\":68,\r\n                \"quantity\": 1\r\n            },\r\n            {\r\n                \"bookId\":354,\r\n                \"quantity\":2\r\n            }\r\n        ]\r\n        \r\n    \r\n}",
+					"raw": "{\r\n        \"books\": [\r\n            {\r\n                \"bookId\":\"6237bbe947bbe112c787bbca\",\r\n                \"quantity\": 1\r\n            },\r\n            {\r\n                \"bookId\":\"6237bc2747bbe112c787bbd0\",\r\n                \"quantity\":2\r\n            }\r\n        ]\r\n        \r\n    \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -369,7 +423,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"books\": [\r\n            {\r\n                \"bookId\":33,\r\n                \"quantity\": 3\r\n            },\r\n            {\r\n                \"bookId\":2,\r\n                \"quantity\": 1\r\n            }\r\n        ]\r\n        \r\n    \r\n}",
+					"raw": "{\r\n        \"books\": [\r\n            {\r\n                \"bookId\":\"6237bc1d47bbe112c787bbce\",\r\n                \"quantity\": 3\r\n            },\r\n            {\r\n                \"bookId\":\"6237bc3647bbe112c787bbd2\",\r\n                \"quantity\": 1\r\n            },\r\n            {\r\n                \"bookId\":\"6237bc2747bbe112c787bbd0\",\r\n                \"quantity\": 5\r\n            }\r\n        ]\r\n        \r\n    \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -417,14 +471,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{path}}/api/order/34",
+					"raw": "{{path}}/api/order/{{sampleAdminOrder}}",
 					"host": [
 						"{{path}}"
 					],
 					"path": [
 						"api",
 						"order",
-						"34"
+						"{{sampleAdminOrder}}"
 					]
 				}
 			},
@@ -455,7 +509,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{path}}/api/order/changestatus/161",
+					"raw": "{{path}}/api/order/changestatus/{{sampleAdminOrder}}",
 					"host": [
 						"{{path}}"
 					],
@@ -463,7 +517,7 @@
 						"api",
 						"order",
 						"changestatus",
-						"161"
+						"{{sampleAdminOrder}}"
 					]
 				}
 			},
@@ -523,7 +577,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{path}}/api/order?startDate=2020-01-01&endDate=2023-01-01&limit=2&page=2",
+					"raw": "{{path}}/api/order?startDate=2020-01-01&endDate=2023-01-01&limit=2&page=1",
 					"host": [
 						"{{path}}"
 					],
@@ -546,7 +600,7 @@
 						},
 						{
 							"key": "page",
-							"value": "2"
+							"value": "1"
 						}
 					]
 				}
@@ -586,82 +640,6 @@
 							"key": "limit",
 							"value": "-5"
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update a Book",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{adminToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n        \"price\": 21,\r\n        \"stockCount\": 14\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{path}}/api/book/68",
-					"host": [
-						"{{path}}"
-					],
-					"path": [
-						"api",
-						"book",
-						"68"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update a Book with Error",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{adminToken}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n        \"price\": 20,\r\n        \"stockCount\": -1\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{path}}/api/book/68",
-					"host": [
-						"{{path}}"
-					],
-					"path": [
-						"api",
-						"book",
-						"68"
 					]
 				}
 			},
@@ -768,7 +746,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{path}}/api/orders?page=1&limit=3",
+					"raw": "{{path}}/api/orders?page=1&limit=2",
 					"host": [
 						"{{path}}"
 					],
@@ -783,7 +761,7 @@
 						},
 						{
 							"key": "limit",
-							"value": "3"
+							"value": "2"
 						}
 					]
 				}
@@ -877,6 +855,123 @@
 				"type": "text/javascript",
 				"exec": [
 					"try{",
+					"    if(typeof pm.collectionVariables.get('sampleInitialized')  ==\"undefined\"){",
+					"\t\t         var reqTime=new Date().getTime();",
+					"",
+					"\t\t\tpm.sendRequest({url: pm.collectionVariables.get('path')+'/api/customer',method: 'POST',header: {'Content-Type': 'application/json'},",
+					"\t\t\tbody: {mode: 'raw',raw: JSON.stringify({\"name\": \"Deniz\", \"surname\": \"EI\",\"email\":\"deniz@example.com\",\"password\":\"asdf1234\", \"address\": \"Aa 123 Roshar\"})}",
+					"\t\t}, function (err, response) {",
+					"\t\t",
+					"\t\t\tpm.sendRequest({url: pm.collectionVariables.get('path')+'/api/customer',method: 'POST',header: {'Content-Type': 'application/json'},",
+					"\t\t\tbody: {mode: 'raw',raw: JSON.stringify({\"name\": \"Ash\", \"surname\": \"Ketchum\",\"email\":\"ashketchumexample@example.com\",\"password\":\"abcd1234\", \"address\": \"Kanto\"})}",
+					"\t\t}, function (err, response) { ",
+					"\t\t\tpm.sendRequest({",
+					"            url: pm.collectionVariables.get('path')+'/authenticate',",
+					"            method: 'POST',",
+					"            header: {",
+					"                'Content-Type': 'application/json'},",
+					"            body: {",
+					"                mode: 'raw',",
+					"                raw: JSON.stringify({",
+					"                \"email\":\"deniz@example.com\",",
+					"                \"password\":\"asdf1234\"",
+					"            })",
+					"            }",
+					"            }, function (err, response) { ",
+					"                var jsonData = response.json();",
+					"                pm.collectionVariables.set(\"adminToken\", response.json().token);",
+					"                pm.collectionVariables.set(\"adminTime\", reqTime);",
+					"\t\t\t\t",
+					"\t\t\t\tvar books=[{ \"name\": \"The Way of Kings\", \"author\": \"Brandon Sanderson\", \"price\": 20, \"stockCount\": 41,\"isbn\" : 1111111111111, \"publicationYear\": 2006},{ \"name\": \"Words of Radiance\", \"author\": \"Brandon Sanderson\", \"price\": 20, \"stockCount\": 31,\"isbn\" : 2222222222222, \"publicationYear\": 2008},{ \"name\": \"Oathbringer\", \"author\": \"Brandon Sanderson\", \"price\": 20, \"stockCount\": 51,\"isbn\" : 3333333333333, \"publicationYear\": 2014},{ \"name\": \"The Rhythm of War\", \"author\": \"Brandon Sanderson\", \"price\": 25, \"stockCount\": 61,\"isbn\" : 4444444444444, \"publicationYear\": 2018},  { \"name\": \"Cosmos\", \"author\": \"Carl Sagan\", \"price\": 10, \"stockCount\": 22,\"isbn\" : 5555555555555, \"publicationYear\": 1979}];",
+					"\t\t\t\tpm.collectionVariables.set('sampleBookCount',0);",
+					"\t\t\t\tfor(var x=0;x<books.length;x++){",
+					"\t\t\t\t\tpm.sendRequest({url: pm.collectionVariables.get('path')+'/api/book',method: 'POST',header: {'Content-Type': 'application/json','Authorization':'Bearer '+pm.collectionVariables.get(\"adminToken\")},",
+					"\t\t\t\t\tbody: {mode: 'raw',raw: JSON.stringify(books[x])}}, function (err, response) {if(response.code>201) return;",
+					"\t\t\t\t\t\tif(typeof pm.collectionVariables.get('sampleBook')  ==\"undefined\")",
+					"\t\t\t\t\t\t\tpm.collectionVariables.set('sampleBook',response.json().data.id);",
+					"\t\t\t\t\t\t",
+					"\t\t\t\t\t\tpm.collectionVariables.set('sampleBookCount',parseInt(pm.collectionVariables.get('sampleBookCount') +1));",
+					"\t\t\t\t\t\tvar cnt=pm.collectionVariables.get('sampleBookCount');",
+					"\t\t\t\t\t\tif(cnt==1){",
+					"\t\t\t\t\t\t\tpm.sendRequest({url: pm.collectionVariables.get('path')+'/api/order',method: 'POST',header: {'Content-Type': 'application/json','Authorization':'Bearer '+pm.collectionVariables.get(\"adminToken\")},",
+					"\t\t\t\t\tbody: {mode: 'raw',raw: JSON.stringify({books:[{bookId:pm.collectionVariables.get('sampleBook'),quantity:2}]})}}, function (err, response) {",
+					"\t\t\t\t\t\tpm.collectionVariables.set('sampleAdminOrder',response.json().data.id);",
+					"\t\t\t\t\t});",
+					"\t\t\t\t\t\t} else if(cnt==2){",
+					"\t\t\t\t\t\t\t\t   pm.sendRequest({",
+					"\t\t\t\t\t\t\t\t\turl: pm.collectionVariables.get('path')+'/authenticate',",
+					"\t\t\t\t\t\t\t\tmethod: 'POST',",
+					"\t\t\t\t\t\t\t\theader: {",
+					"\t\t\t\t\t\t\t\t\t'Content-Type': 'application/json'},",
+					"\t\t\t\t\t\t\t\tbody: {",
+					"\t\t\t\t\t\t\t\t\tmode: 'raw',",
+					"\t\t\t\t\t\t\t\t\traw: JSON.stringify({",
+					"\t\t\t\t\t\t\t\t\"email\":\"ashketchumexample@example.com\",",
+					"\t\t\t\t\t\t\t\t\"password\":\"abcd1234\"",
+					"\t\t\t\t\t\t\t})",
+					"\t\t\t\t\t\t\t\t}",
+					"\t\t\t\t\t\t\t\t}, function (err, response) {",
+					"\t\t\t\t\t\t\t\t\tvar jsonData = response.json();",
+					"\t\t\t\t\t\t\t\t\tpm.collectionVariables.set(\"userToken\", response.json().token);",
+					"\t\t\t\t\t\t\t\t\tpm.collectionVariables.set(\"userTime\", reqTime-1000);",
+					"\t\t\t\t\t\t\t\t\t\t\t\t\tpm.sendRequest({url: pm.collectionVariables.get('path')+'/api/order',method: 'POST',header: {'Content-Type': 'application/json','Authorization':'Bearer '+pm.collectionVariables.get(\"adminToken\")},",
+					"\t\t\t\t\t\t\t\t\tbody: {mode: 'raw',raw: JSON.stringify({books:[{bookId:pm.collectionVariables.get('sampleBook'),quantity:3}]})}}, function (err, response) { ",
+					"\t\t\t\t\t\t\t\t\t\tpm.collectionVariables.set('sampleUserOrder',response.json().data.id);",
+					"\t\t\t\t\t\t\t\t\t});",
+					"\t\t\t\t\t\t\t\t});",
+					"\t\t\t\t\t\t}",
+					"\t\t\t\t\t\t});",
+					"\t\t\t\t\t",
+					"\t\t\t\t}",
+					"\t\t\t\tif(pm.collectionVariables.get('sampleBookCount')==0){",
+					"\t\t\t\t\tpm.sendRequest({url: pm.collectionVariables.get('path')+'/api/book',method: 'GET',header: {'Content-Type': 'application/json'}}, function (err, response) {if(response.code>201 || response.json().data==null || response.json().data.length==0) return;",
+					"\t\t\t\t\t\tif(typeof pm.collectionVariables.get('sampleBook')  ==\"undefined\")",
+					"\t\t\t\t\t\t\tpm.collectionVariables.set('sampleBook',response.json().data[0].id);",
+					"\t\t\t\t\t\t",
+					"\t\t\t\t\t\tpm.collectionVariables.set('sampleBookCount',parseInt(response.json().data.length));",
+					"\t\t\t\t\t\tvar cnt=pm.collectionVariables.get('sampleBookCount');",
+					"\t\t\t\t\t\t\tpm.sendRequest({url: pm.collectionVariables.get('path')+'/api/order',method: 'POST',header: {'Content-Type': 'application/json','Authorization':'Bearer '+pm.collectionVariables.get(\"adminToken\")},",
+					"\t\t\t\t\tbody: {mode: 'raw',raw: JSON.stringify({books:[{bookId:pm.collectionVariables.get('sampleBook'),quantity:2}]})}}, function (err, response) {",
+					"\t\t\t\t\t\tpm.collectionVariables.set('sampleAdminOrder',response.json().data.id);",
+					"\t\t\t\t\t});",
+					"\t\t\t\t\t\t",
+					"\t\t\t\t   pm.sendRequest({",
+					"\t\t\t\t\turl: pm.collectionVariables.get('path')+'/authenticate',",
+					"\t\t\t\tmethod: 'POST',",
+					"\t\t\t\theader: {",
+					"\t\t\t\t\t'Content-Type': 'application/json'},",
+					"\t\t\t\tbody: {",
+					"\t\t\t\t\tmode: 'raw',",
+					"\t\t\t\t\traw: JSON.stringify({",
+					"\t\t\t\t\"email\":\"ashketchumexample@example.com\",",
+					"\t\t\t\t\"password\":\"abcd1234\"",
+					"\t\t\t})",
+					"\t\t\t\t}",
+					"\t\t\t\t}, function (err, response) {console.log(response);",
+					"\t\t\t\t\tvar jsonData = response.json();",
+					"\t\t\t\t\tpm.collectionVariables.set(\"userToken\", response.json().token);",
+					"\t\t\t\t\tpm.collectionVariables.set(\"userTime\", reqTime-1000);",
+					"\t\t\t\t\t\t\t\t\tpm.sendRequest({url: pm.collectionVariables.get('path')+'/api/order',method: 'POST',header: {'Content-Type': 'application/json','Authorization':'Bearer '+pm.collectionVariables.get(\"adminToken\")},",
+					"\t\t\t\t\tbody: {mode: 'raw',raw: JSON.stringify({books:[{bookId:pm.collectionVariables.get('sampleBook'),quantity:3}]})}}, function (err, response) { ",
+					"\t\t\t\t\t\tpm.collectionVariables.set('sampleUserOrder',response.json().data.id);",
+					"\t\t\t\t\t});",
+					"\t\t\t\t});",
+					"\t\t\t\t\t\t",
+					"\t\t\t\t\t\t",
+					"\t\t\t\t\t});",
+					"\t\t\t\t}",
+					"\t\t\t\tpm.collectionVariables.set('sampleInitialized','1');",
+					"\t\t\t}",
+					"\t\t);",
+					"\t\t});",
+					"\t\t});",
+					"\t\t  ",
+					"    }",
+					"}catch(exp){",
+					"",
+					"}",
+					"",
+					"try{",
 					"    if(typeof pm.request.auth.bearer !=\"undefined\"){",
 					"        var reqTime=new Date().getTime();",
 					"        if(reqTime-(pm.collectionVariables.get('adminTime')||0)>86400000){",
@@ -940,22 +1035,6 @@
 			"key": "path",
 			"value": "http://localhost:8082",
 			"type": "string"
-		},
-		{
-			"key": "userToken",
-			"value": ""
-		},
-		{
-			"key": "userTime",
-			"value": ""
-		},
-		{
-			"key": "adminToken",
-			"value": ""
-		},
-		{
-			"key": "adminTime",
-			"value": ""
 		}
 	]
 }

@@ -1,24 +1,19 @@
 package com.getir.readingisgood.domain;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "CUSTOMER_ORDER")
+@Document("customer_order")
 public class Order implements BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    protected Long id;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "customer_id")
+    protected String id;
     private Customer customer;
-    @Column(name = "order_date")
     private LocalDateTime orderDate;
-    @Column(name = "status")
     private OrderStatus status;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
     private List<OrderBook> books = new ArrayList<>();
 
     public Order() {
@@ -31,12 +26,12 @@ public class Order implements BaseEntity {
     }
 
     @Override
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
     @Override
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

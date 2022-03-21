@@ -59,7 +59,7 @@ public class BookController {
     @Parameter(name = "id", description = "Book id", required = true)
     @ApiResponse(responseCode = "200", description = "Success")
     @ApiResponse(responseCode = "404", description = "Book not found")
-    public ResponseEntity<QueryObjectResponse<Book>> getBookByKey(@PathVariable("id") long id) {
+    public ResponseEntity<QueryObjectResponse<Book>> getBookByKey(@PathVariable("id") String id) {
         Optional<Book> book = bookRepository.findById(id);
         if (book.isPresent()) {
             return new ResponseEntity<>(new QueryObjectResponse<>(book.get(), ControllerHelper.getQueryMap("id", id)), HttpStatus.OK);
@@ -98,7 +98,7 @@ public class BookController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/book/{id}")
     @Operation(summary = "Updates a book's stock count or price in database", description = "Users with ROLE_ADMIN can perform this operation")
-    public ResponseEntity<ObjectResponse<Book>> updateBook(@PathVariable("id") long id, @Valid @RequestBody BookUpdateRequest bookUpdateRequest) {
+    public ResponseEntity<ObjectResponse<Book>> updateBook(@PathVariable("id") String id, @Valid @RequestBody BookUpdateRequest bookUpdateRequest) {
         Optional<Book> selectedBook = bookRepository.findById(id);
         Map<String, String> change = new HashMap<>();
         if (selectedBook.isPresent()) {

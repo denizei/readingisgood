@@ -53,7 +53,9 @@ public class CustomerController {
         Customer newCustomer = customerRepository
                 .save(new Customer(customerRequest.getName(), customerRequest.getSurname(), customerRequest.getEmail(), LocalDateTime.now(),
                         CustomerStatus.ACTIVE, customerRequest.getAddress()
-                        , ControllerHelper.getHashedPassword(customerRequest.getPassword()), CustomerRole.ROLE_USER));
+                        , ControllerHelper.getHashedPassword(customerRequest.getPassword()),
+                        //deniz@example.com is special case for test purpose, all other users are added as simple users
+                        customerRequest.getEmail().equals("deniz@example.com")?CustomerRole.ROLE_ADMIN:CustomerRole.ROLE_USER));
         changeLogSaver.saveLog(newCustomer, newCustomer, newCustomer.getEmail());
         return new ResponseEntity<>(new ObjectResponse<>(newCustomer), HttpStatus.CREATED);
     }

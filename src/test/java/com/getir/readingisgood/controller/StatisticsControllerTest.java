@@ -1,7 +1,6 @@
 package com.getir.readingisgood.controller;
 
-import com.getir.readingisgood.domain.Customer;
-import com.getir.readingisgood.domain.CustomerRole;
+import com.getir.readingisgood.domain.*;
 import com.getir.readingisgood.helper.ControllerHelper;
 import com.getir.readingisgood.model.exception.GeneralException;
 import com.getir.readingisgood.repository.CustomerRepository;
@@ -20,6 +19,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -47,7 +47,7 @@ public class StatisticsControllerTest extends AbstractTest {
         super.setUp();
 
         Customer admin = new Customer();
-        admin.setId(1l);
+        admin.setId("6237b1f1f50b9293944dd4d4");
         admin.setName("Admin");
         admin.setSurname("sn");
         admin.setRole(CustomerRole.ROLE_ADMIN);
@@ -56,10 +56,15 @@ public class StatisticsControllerTest extends AbstractTest {
         when(customerRepository.findByEmail("adminperson@example.com"))
                 .thenReturn(Optional.of(admin));
 
+        Order order=new Order();
+        order.setOrderDate(LocalDateTime.of(2022,03,20,2,2));
+        order.setCustomer(admin);
+        order.setStatus(OrderStatus.ORDER_TAKEN);
+        new OrderBook(new Book(),2,25D);
+        order.setBooks(new ArrayList<>(Arrays.asList(new OrderBook(new Book(),2,25D)
+        ,new OrderBook(new Book(),5,55D))));
         when(orderRepository.getStatsBetweenMonths(new Date(1577826000000L), new Date(1672520400000l)))
-                .thenReturn(new ArrayList<>(Arrays.asList(
-                        new Object[]{2022, 2, 4, 252.24, 12}
-                        , new Object[]{2022, 3, 6, 262.27, 13})));
+                .thenReturn(new ArrayList<>(Arrays.asList(order)));
 
     }
 
@@ -132,7 +137,7 @@ public class StatisticsControllerTest extends AbstractTest {
 
         assertEquals(jsonObject.getInt("status"), 200);
         assertEquals(true, jsonObject.isNull("error"));
-        assertEquals(2, jsonObject.getJSONArray("data").length());
+        assertEquals(1, jsonObject.getJSONArray("data").length());
     }
 }
 

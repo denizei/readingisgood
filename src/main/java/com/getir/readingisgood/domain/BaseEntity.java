@@ -2,7 +2,7 @@ package com.getir.readingisgood.domain;
 
 public interface BaseEntity {
 
-    public Long getId();
+    public String getId();
 
-    public void setId(Long id);
+    public void setId(String id);
 }

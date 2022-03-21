@@ -7,15 +7,12 @@ public class StatisticsResponse {
     private Integer totalBookCount;
     private Double totalPurchasedAmount;
 
-    public StatisticsResponse() {
-    }
-
-    public StatisticsResponse(Object[] object) {
-        this.year = ((Number) object[0]).intValue();
-        this.month = ((Number) object[1]).intValue();
-        this.totalOrderCount = ((Number) object[2]).intValue();
-        this.totalPurchasedAmount = ((Number) object[3]).doubleValue();
-        this.totalBookCount = ((Number) object[4]).intValue();
+    public StatisticsResponse(int year, int month, Number[] values) {
+        this.year = year;
+        this.month = month;
+        this.totalOrderCount = ((Number) values[0]).intValue();
+        this.totalPurchasedAmount = ((Number) values[1]).doubleValue();
+        this.totalBookCount = ((Number) values[2]).intValue();
 
     }
 

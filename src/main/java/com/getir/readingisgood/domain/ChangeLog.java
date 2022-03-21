@@ -1,32 +1,25 @@
 package com.getir.readingisgood.domain;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "CHANGE_LOG")
+@Document("change_log")
 public class ChangeLog {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "customer_id", nullable = false)
+    private String id;
     private Customer customer;
-    @Column(name = "entity_id", nullable = false)
-    private Long entityId;
-    @Column(name = "action_date", nullable = false)
+    private String entityId;
     private LocalDateTime actionDate;
-    @Column(name = "status", nullable = false)
     private ChangeLogActionType actionType;
-    @Column(name = "old_value")
     private String oldValue;
-    @Column(name = "new_value", nullable = false)
     private String newValue;
 
     public ChangeLog() {
     }
 
-    public ChangeLog(Customer customer, Long entityId, ChangeLogActionType actionType, String oldValue, String newValue) {
+    public ChangeLog(Customer customer, String entityId, ChangeLogActionType actionType, String oldValue, String newValue) {
         this.customer = customer;
         this.entityId = entityId;
         this.actionType = actionType;
@@ -35,11 +28,11 @@ public class ChangeLog {
         this.actionDate = LocalDateTime.now();
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -51,11 +44,11 @@ public class ChangeLog {
         this.customer = customer;
     }
 
-    public Long getEntityId() {
+    public String getEntityId() {
         return entityId;
     }
 
-    public void setEntityId(Long entityId) {
+    public void setEntityId(String entityId) {
         this.entityId = entityId;
     }
 

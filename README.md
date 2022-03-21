@@ -23,7 +23,7 @@ Project is created with:
 * Java 17
 * Spring Boot 2.6.4
 * Maven
-* H2 DB 2.1.210
+* MongoDB 5
 * Open API 3 for [Swagger Documentation]
 
 [Swagger Documentation]: http://localhost:8082/swagger-ui/index.html
@@ -38,31 +38,28 @@ If you have problem about creating jar file, you can use pre-installed jar file 
 * To stop use command `docker compose -f ./docker-compose-cached.yml  down`
 
 ## Database
-For testing purposes, database is made reachable on purpose and can be reached
-by using the link below
-[DB] (http://localhost:8082/db/)
-* Driver Class: `org.h2.Driver`
-* JDBC URL: `jdbc:h2:file:./bookstoredb`
-* User Name: `un`
-* Password: (no password needed)
+This project is using MongoDB to store data.
 
-Some sample data are already inserted in database.
-`bookstoredb.mv.db` is the file which includes the database. This file is located at main project directory.
-
-#### Tables 
-* `CUSTOMER` => id, email, name, surname, registration_date, password, status, role, address
-* `BOOK` => id, name, author, price, publication_year, isbn, stock_count
-* `ORDER` => id, customer_id, order_date, status
-* `ORDER_BOOK` => id, order_id, quantity,price
-* `CHANGE_LOG` => id, customer_id, entity_id, action_date, status, old_value, new_value
+#### Collections 
+* `customer` => id, email, name, surname, registration_date, password, status, role, address
+* `book` => id, name, author, price, publication_year, isbn, stock_count
+* `customer_order` => id, customer_id, order_date, status,List(order_book)
+* `change_log` => id, customer_id, entity_id, action_date, status, old_value, new_value
 
 ## Usage
 Postman collection can be found in this directory:
 [POSTMAN]
 Once an authorization required request is sent 
 the collection automatically generates {{adminToken}} and {{userToken}} 
-variables with help of Postman Pre-request Script. 
-If a problem occurs, you can describe them under Collection Variables tab.
+variables with help of Postman Pre-request Script. If there is no data in the MongoDB,
+This script also create deniz@example.com ADMIN user (deniz@example.com is a restricted ADMIN email
+, if a user created with this email, it is flagged as ADMIN)
+and ashketchumexample@example.com standard user with some sample books and orders. 
+If you want to disable this feature, you can set POSTMAN {{sampleInitialized}} collection variable to 1.
+
+If a problem occurs, you can describe them under Collection Variables tab.You can set multiple ADMIN users
+from database customer collection.
+
 
 [POSTMAN]: https://github.com/denizei/readingisgood/blob/main/readingisgood_postman_collection.json
 
@@ -83,7 +80,7 @@ To perform further operations please authenticate using;
   * email: ashketchumexample@example.com
   * password: abcd1234
 * Creating a new customer and using its email and password info.
-* If customer role is set to **1** then the customer becomes an admin.
+* If customer role is set to **ROLE_ADMIN** then the customer becomes an admin.
 
 Since a token is created, it is available for **1 day**. 
 
@@ -120,22 +117,22 @@ After authorized as user one can perform these operations
 
 ## Logging
 
-* All  the operations are logged on table `CHANGE_LOG`.
+* All  the operations are logged on collection `change_log`.
 * entity_id corresponds to the id of the table which the log is related.
   * The entity id with the value -1 represents calling the `/api/stats/monthlyrequest`.
 
 * Log status codes can be found below
-  * ORDER_INSERT : 0
-  * BOOK_INSERT : 1
-  * ORDER_UPDATE : 2
-  * BOOK_UPDATE_BY_USER : 3
-  * BOOK_UPDATE_BY_ORDER : 4
-  * CUSTOMER_CREATED : 5
-  * MONTHLY_REPORT_FETCHED : 6
+  * ORDER_INSERT
+  * BOOK_INSERT
+  * ORDER_UPDATE
+  * BOOK_UPDATE_BY_USER
+  * BOOK_UPDATE_BY_ORDER
+  * CUSTOMER_CREATED
+  * MONTHLY_REPORT_FETCHED
 
 ## Tests
 JUnit tests are implemented. Zipped coverage report file can be obtainable under
 `/src/test/docs` folder.
 * Class coverage: 100%
-* Method coverage: 75.5%
-* Line coverage: 77.7%
+* Method coverage: 76.2%
+* Line coverage: 81.1%
