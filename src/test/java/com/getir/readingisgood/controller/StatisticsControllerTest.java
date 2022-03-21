@@ -56,13 +56,13 @@ public class StatisticsControllerTest extends AbstractTest {
         when(customerRepository.findByEmail("adminperson@example.com"))
                 .thenReturn(Optional.of(admin));
 
-        Order order=new Order();
-        order.setOrderDate(LocalDateTime.of(2022,03,20,2,2));
+        Order order = new Order();
+        order.setOrderDate(LocalDateTime.of(2022, 03, 20, 2, 2));
         order.setCustomer(admin);
         order.setStatus(OrderStatus.ORDER_TAKEN);
-        new OrderBook(new Book(),2,25D);
-        order.setBooks(new ArrayList<>(Arrays.asList(new OrderBook(new Book(),2,25D)
-        ,new OrderBook(new Book(),5,55D))));
+        new OrderBook(new Book(), 2, 25D);
+        order.setBooks(new ArrayList<>(Arrays.asList(new OrderBook(new Book(), 2, 25D)
+                , new OrderBook(new Book(), 5, 55D))));
         when(orderRepository.getStatsBetweenMonths(new Date(1577826000000L), new Date(1672520400000l)))
                 .thenReturn(new ArrayList<>(Arrays.asList(order)));
 

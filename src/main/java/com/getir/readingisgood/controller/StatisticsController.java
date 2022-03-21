@@ -62,33 +62,33 @@ public class StatisticsController {
             @Valid @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM") Date startDate
             , @Valid @RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM") Date endDate) {
         List<Order> stats = orderRepository.getStatsBetweenMonths(startDate, endDate);
-        Map<Integer,Number[]> map=new TreeMap<>(new Comparator<Integer>() {
+        Map<Integer, Number[]> map = new TreeMap<>(new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
                 return o2.compareTo(o1);
             }
         });
         //find all the orders between selected dates and summarized its values
-        stats.stream().forEach(order->{
-            int key=order.getOrderDate().getYear()*100+order.getOrderDate().getMonthValue();
-            double price=0;
-            int quantity=0;
-            for(OrderBook ob:order.getBooks()){
-                price+=ob.getPrice();
-                quantity+=ob.getQuantity();
+        stats.stream().forEach(order -> {
+            int key = order.getOrderDate().getYear() * 100 + order.getOrderDate().getMonthValue();
+            double price = 0;
+            int quantity = 0;
+            for (OrderBook ob : order.getBooks()) {
+                price += ob.getPrice();
+                quantity += ob.getQuantity();
             }
             //group orders by  year*100+month key
-            map.merge(key,new Number[]{1,price,quantity},(oldValue,newValue)->{
-                oldValue[0]=oldValue[0].intValue()+1;
-                oldValue[1]=oldValue[1].doubleValue()+newValue[1].doubleValue();
-                oldValue[2]=oldValue[2].intValue()+newValue[2].doubleValue();
+            map.merge(key, new Number[]{1, price, quantity}, (oldValue, newValue) -> {
+                oldValue[0] = oldValue[0].intValue() + 1;
+                oldValue[1] = oldValue[1].doubleValue() + newValue[1].doubleValue();
+                oldValue[2] = oldValue[2].intValue() + newValue[2].doubleValue();
                 return oldValue;
             });
         });
-        List<StatisticsResponse> responseList=new ArrayList<>(map.size());
-        for(Map.Entry<Integer,Number[]> en:map.entrySet()){
-            int monthAndYear=en.getKey();
-            responseList.add(new StatisticsResponse(monthAndYear/100,monthAndYear%100,en.getValue()));
+        List<StatisticsResponse> responseList = new ArrayList<>(map.size());
+        for (Map.Entry<Integer, Number[]> en : map.entrySet()) {
+            int monthAndYear = en.getKey();
+            responseList.add(new StatisticsResponse(monthAndYear / 100, monthAndYear % 100, en.getValue()));
         }
         changeLogSaver.saveLog(logEntry, "Report fetched: " + startDate.getTime() + " to " + endDate.getTime());
         return ResponseEntity.ok(new QueryObjectResponse<>(responseList

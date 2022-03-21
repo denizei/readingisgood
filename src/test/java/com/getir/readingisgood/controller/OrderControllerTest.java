@@ -63,7 +63,7 @@ public class OrderControllerTest extends AbstractTest {
 
     @BeforeEach
     public void setUp() {
-        if(orderId==null) {
+        if (orderId == null) {
             orderRepository.deleteAll();
             bookRepository.deleteAll();
             customerRepository.deleteAll();

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
+
 /*
     UserDetailsService implementation
     Checks the customer from database and returns a UserDetails object with their role

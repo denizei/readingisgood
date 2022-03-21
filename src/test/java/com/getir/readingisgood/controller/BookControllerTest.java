@@ -49,7 +49,7 @@ public class BookControllerTest extends AbstractTest {
 
     @BeforeEach
     public void setUp() {
-        if(bookId==null)
+        if (bookId == null)
             bookRepository.deleteAll();
         logger.info("BookControllerTest setting  up");
         super.setUp();

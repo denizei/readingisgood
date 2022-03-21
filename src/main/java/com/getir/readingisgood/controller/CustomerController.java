@@ -55,7 +55,7 @@ public class CustomerController {
                         CustomerStatus.ACTIVE, customerRequest.getAddress()
                         , ControllerHelper.getHashedPassword(customerRequest.getPassword()),
                         //deniz@example.com is special case for test purpose, all other users are added as simple users
-                        customerRequest.getEmail().equals("deniz@example.com")?CustomerRole.ROLE_ADMIN:CustomerRole.ROLE_USER));
+                        customerRequest.getEmail().equals("deniz@example.com") ? CustomerRole.ROLE_ADMIN : CustomerRole.ROLE_USER));
         changeLogSaver.saveLog(newCustomer, newCustomer, newCustomer.getEmail());
         return new ResponseEntity<>(new ObjectResponse<>(newCustomer), HttpStatus.CREATED);
     }
